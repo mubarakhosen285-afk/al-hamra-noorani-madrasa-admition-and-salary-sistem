@@ -778,7 +778,7 @@
                 <circle cx="50" cy="30" r="3.5" fill="#C9A227"/>
             </svg>
             <div>
-                <h1>আল হামরা নূরানী মাদ্রাসা, ধানুয়াখালী</h1>
+                <h1>আল হামরা নূরানী মাদ্রাসা, ধানুয়াখালী</h1>
                 <p>ছাত্র-ছাত্রী ভর্তি নিবন্ধন ও মাসিক বেতন খাতা</p>
             </div>
         </div>
@@ -815,7 +815,7 @@
                         </div>
                         <div class="field">
                             <label>রোল নম্বর <span class="req">*</span></label>
-                            <input type="text" id="f_roll" required placeholder="যেমনঃ ১০১">
+                            <input type="number" id="f_roll" required placeholder="যেমনঃ ১০১">
                         </div>
                         <div class="field">
                             <label>শ্রেণি <span class="req">*</span></label>
@@ -849,7 +849,7 @@
                         </div>
                         <div class="field">
                             <label>মোবাইল নম্বর <span class="req">*</span></label>
-                            <input type="tel" id="f_mobile" required placeholder="যেমনঃ ০১৭xxxxxxxx">
+                            <input type="number" id="f_mobile" required placeholder="যেমনঃ ০১৭xxxxxxxx">
                         </div>
                         <div class="field">
                             <label>ভর্তির তারিখ</label>
@@ -868,13 +868,18 @@
 
         <!-- ============ STUDENT LIST TAB ============ -->
         <section class="panel" id="panel-students">
-            <div class="card narrow">
+            <div class="card">
                 <h2>শিক্ষার্থী তালিকা</h2>
-                <p class="sub">রোল, নাম বা অভিভাবকের নাম দিয়ে খুঁজুন।</p>
-                <div class="search-row">
-                    <input type="text" id="studentSearch" placeholder="রোল / নাম / মোবাইল দিয়ে খুঁজুন...">
+                <p class="sub" id="studentsTopSub">প্রথমে একটি শ্রেণি বাছাই করুন — সেই শ্রেণির শিক্ষার্থী তালিকা দেখা যাবে।</p>
+
+                <div class="class-selector" id="studentClassSelector"></div>
+
+                <div id="studentsListArea" style="display:none;">
+                    <div class="search-row">
+                        <input type="text" id="studentSearch" placeholder="রোল / নাম / মোবাইল দিয়ে খুঁজুন...">
+                    </div>
+                    <div id="studentsTableWrap" class="table-wrap"><div class="loading">তথ্য লোড হচ্ছে...</div></div>
                 </div>
-                <div id="studentsTableWrap" class="table-wrap"><div class="loading">তথ্য লোড হচ্ছে...</div></div>
             </div>
         </section>
 
@@ -938,7 +943,7 @@
         </div>
     </div>
 
-    <footer>মাদ্রাসা ভর্তি ও বেতন ব্যবস্থাপনা — তথ্য Firebase Database-এ সংরক্ষিত থাকে</footer>
+    <footer>আল হামরা নূরানী মাদ্রাসা, ধানুয়াখালী'র ভর্তি এবং বেতন সংরক্ষণ <br> <span>created by MOBARAK HOSEN</span></footer>
 
     <script>
         // ---------------- Persistent Storage Engine ----------------
@@ -1030,6 +1035,26 @@
         const hasRealStorage = (typeof window.storage === 'object' && window.storage !== null && typeof window.storage.set === 'function');
         const memStore = {};
 
+        // ---------------------------------------------------------------
+        // FIX #1: Create the firebaseReady promise HERE, synchronously,
+        // BEFORE any code below (including renderStudentsTable /
+        // renderFeeLedger at the bottom of this script) can call
+        // waitForFirebase(). The <script type="module"> block that
+        // actually connects to Firebase runs LATER (module scripts are
+        // deferred), so previously "window.firebaseReady" was still
+        // undefined the first time the page loaded and every read
+        // silently skipped Firebase and returned empty local data.
+        // Clicking a tab again worked only because by then the module
+        // script had already finished and set window.firebaseReady.
+        // By creating the pending Promise up-front and having the
+        // module script resolve it later, every caller (no matter how
+        // early it runs) correctly waits for the real Firebase
+        // connection instead of racing past it.
+        // ---------------------------------------------------------------
+        window.firebaseReady = new Promise((resolve) => {
+            window.__resolveFirebaseReady = resolve;
+        });
+
         function showStorageBanner() {
             const banner = document.getElementById('storageBanner');
             if (banner) banner.classList.add('show');
@@ -1037,8 +1062,8 @@
 
         async function waitForFirebase() {
             try {
-                if (window.firebaseReady) await window.firebaseReady;
-                return window.firebaseDb || null;
+                const db = await window.firebaseReady;
+                return db || window.firebaseDb || null;
             } catch (e) {
                 return null;
             }
@@ -1193,42 +1218,60 @@
             await storeDelete(`fee:${classCode(className)}:${roll}`);
         }
 
-        let legacyMigrationDone = false;
-        async function migrateLegacyData() {
-            if (legacyMigrationDone) return;
-            legacyMigrationDone = true;
-            try {
-                const studentKeys = await storeListKeys('student:');
-                const rollToCode = {};
-                for (const key of studentKeys) {
-                    const parts = key.split(':');
-                    if (parts.length !== 2) continue;
-                    const roll = parts[1];
-                    const raw = await storeGet(key);
-                    if (!raw) continue;
-                    let student;
-                    try { student = JSON.parse(raw); } catch (e) { continue; }
-                    const code = classCode(student.className);
-                    const newKey = `student:${code}:${roll}`;
-                    const existing = await storeGet(newKey);
-                    if (!existing) await storeSet(newKey, raw);
-                    await storeDelete(key);
-                    rollToCode[roll] = code;
-                }
-                const feeKeys = await storeListKeys('fee:');
-                for (const key of feeKeys) {
-                    const parts = key.split(':');
-                    if (parts.length !== 2) continue;
-                    const roll = parts[1];
-                    const raw = await storeGet(key);
-                    if (!raw) continue;
-                    const code = rollToCode[roll] || 'legacy';
-                    const newKey = `fee:${code}:${roll}`;
-                    const existing = await storeGet(newKey);
-                    if (!existing) await storeSet(newKey, raw);
-                    await storeDelete(key);
-                }
-            } catch (e) {}
+        // ---------------------------------------------------------------
+        // FIX #2: migrateLegacyData used a plain boolean flag
+        // (legacyMigrationDone) that was set to true BEFORE the
+        // migration's async work actually finished. Because
+        // renderStudentsTable() and renderFeeLedger() both call
+        // listStudents() -> migrateLegacyData() almost at the same
+        // time on page load, the second call saw the flag already
+        // "true" and returned immediately -- even though the first
+        // migration hadn't finished moving/writing data yet. That
+        // caused storeListKeys('student:') to run against a
+        // half-migrated store and come back empty for the fee ledger.
+        // Now we cache the in-flight PROMISE itself, so every caller
+        // (no matter how early) awaits the same single migration run
+        // to actually complete before continuing.
+        // ---------------------------------------------------------------
+        let legacyMigrationPromise = null;
+        function migrateLegacyData() {
+            if (!legacyMigrationPromise) {
+                legacyMigrationPromise = (async () => {
+                    try {
+                        const studentKeys = await storeListKeys('student:');
+                        const rollToCode = {};
+                        for (const key of studentKeys) {
+                            const parts = key.split(':');
+                            if (parts.length !== 2) continue;
+                            const roll = parts[1];
+                            const raw = await storeGet(key);
+                            if (!raw) continue;
+                            let student;
+                            try { student = JSON.parse(raw); } catch (e) { continue; }
+                            const code = classCode(student.className);
+                            const newKey = `student:${code}:${roll}`;
+                            const existing = await storeGet(newKey);
+                            if (!existing) await storeSet(newKey, raw);
+                            await storeDelete(key);
+                            rollToCode[roll] = code;
+                        }
+                        const feeKeys = await storeListKeys('fee:');
+                        for (const key of feeKeys) {
+                            const parts = key.split(':');
+                            if (parts.length !== 2) continue;
+                            const roll = parts[1];
+                            const raw = await storeGet(key);
+                            if (!raw) continue;
+                            const code = rollToCode[roll] || 'legacy';
+                            const newKey = `fee:${code}:${roll}`;
+                            const existing = await storeGet(newKey);
+                            if (!existing) await storeSet(newKey, raw);
+                            await storeDelete(key);
+                        }
+                    } catch (e) {}
+                })();
+            }
+            return legacyMigrationPromise;
         }
 
         // ---------------- Helpers & Formatting ----------------
@@ -1372,12 +1415,51 @@
 
         // ---------------- Students Table Module ----------------
         let allStudentsCache = [];
+        let selectedStudentClass = null;
 
         async function renderStudentsTable() {
-            const wrap = document.getElementById('studentsTableWrap');
-            wrap.innerHTML = '<div class="loading">তথ্য লোড হচ্ছে...</div>';
             allStudentsCache = await listStudents();
-            drawStudentsTable(allStudentsCache);
+            renderStudentClassCards();
+            if (selectedStudentClass) {
+                applyStudentClassFilter();
+            }
+        }
+
+        function renderStudentClassCards() {
+            const wrap = document.getElementById('studentClassSelector');
+            wrap.innerHTML = classDefs.map(c => {
+                const count = allStudentsCache.filter(s => s.className === c.key).length;
+                const activeCls = selectedStudentClass === c.key ? 'active' : '';
+                return `
+                  <div class="class-card ${activeCls}" onclick="selectStudentClass('${escapeHtml(c.key)}')">
+                    <span class="cls-icon-wrap">${classIconSvg}<span class="cls-badge">${c.badge}</span></span>
+                    <span class="cls-label">${c.key}</span>
+                    <span class="cls-count">${toBn(count)} জন শিক্ষার্থী</span>
+                  </div>`;
+            }).join('');
+        }
+
+        window.selectStudentClass = function(key) {
+            selectedStudentClass = key;
+            document.getElementById('studentsTopSub').textContent = key + ' এর শিক্ষার্থী তালিকা — রোল, নাম বা অভিভাবকের নাম দিয়ে খুঁজুন।';
+            renderStudentClassCards();
+            document.getElementById('studentsListArea').style.display = 'block';
+            applyStudentClassFilter();
+            document.getElementById('studentsListArea').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        };
+
+        function applyStudentClassFilter() {
+            const q = document.getElementById('studentSearch').value.trim().toLowerCase();
+            let list = allStudentsCache.filter(s => s.className === selectedStudentClass);
+            if (q) {
+                list = list.filter(s =>
+                    String(s.roll).toLowerCase().includes(q) ||
+                    (s.name || '').toLowerCase().includes(q) ||
+                    (s.mobile || '').toLowerCase().includes(q) ||
+                    (s.guardian || '').toLowerCase().includes(q)
+                );
+            }
+            drawStudentsTable(list);
         }
 
         function drawStudentsTable(list) {
@@ -1419,16 +1501,9 @@
               `;
         }
 
-        document.getElementById('studentSearch').addEventListener('input', (e) => {
-            const q = e.target.value.trim().toLowerCase();
-            if (!q) { drawStudentsTable(allStudentsCache); return; }
-            const filtered = allStudentsCache.filter(s =>
-                String(s.roll).toLowerCase().includes(q) ||
-                (s.name || '').toLowerCase().includes(q) ||
-                (s.mobile || '').toLowerCase().includes(q) ||
-                (s.guardian || '').toLowerCase().includes(q)
-            );
-            drawStudentsTable(filtered);
+        document.getElementById('studentSearch').addEventListener('input', () => {
+            if (!selectedStudentClass) return;
+            applyStudentClassFilter();
         });
 
         window.editStudentByRoll = async function(roll, className) {
@@ -1552,7 +1627,7 @@
                 await setSettleTimestamp(selectedClass, ts);
                 currentSettleTs = ts;
                 updateSettleDisplay();
-                showMsg(document.getElementById('feeMsg'), 'হিসাব সম্পন্ন ধরা হয়েছে।', true);
+                showMsg(document.getElementById('feeMsg'), 'হিসাব সম্পন্ন ধরা হয়েছে।', true);
             } catch (err) {
                 showMsg(document.getElementById('feeMsg'), 'ত্রুটি ঘটেছে।', false);
             } finally {
@@ -1727,9 +1802,9 @@
                 drawLedgerTable();
                 updateSettleDisplay();
                 closeModal();
-                showMsg(document.getElementById('feeMsg'), 'বেতন যোগ করা হয়েছে।', true);
+                showMsg(document.getElementById('feeMsg'), 'বেতন যোগ করা হয়েছে।', true);
             } catch (err) {
-                showMsg(modalMsg, 'ত্রুটি হয়েছে।', false);
+                showMsg(modalMsg, 'ত্রুটি হয়েছে।', false);
             } finally {
                 submitBtn.disabled = false;
             }
@@ -1777,14 +1852,16 @@
     window.firebaseApp = app;
     window.firebaseDb = db;
     window.firebaseFns = { ref, get, set, remove };
-    window.firebaseReady = Promise.resolve(db);
+    // FIX: resolve the pending promise created earlier, instead of
+    // overwriting window.firebaseReady with a brand-new Promise here.
+    // Any code that already started awaiting window.firebaseReady
+    // (which happens as soon as the page loads) now gets unblocked
+    // correctly once Firebase is actually ready.
+    if (window.__resolveFirebaseReady) window.__resolveFirebaseReady(db);
   } catch (error) {
     console.error('Firebase initialization failed:', error);
-    window.firebaseReady = Promise.resolve(null);
+    if (window.__resolveFirebaseReady) window.__resolveFirebaseReady(null);
   }
 </script>
 </body>
 </html>
-
-
-
