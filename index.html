@@ -42,6 +42,7 @@
             padding: 22px 24px 40px;
             position: relative;
             overflow: hidden;
+            height: 170px;
         }
         .topbar::after {
             content: "";
@@ -58,7 +59,7 @@
             display: flex;
             align-items: center;
             gap: 14px;
-            max-width: 1180px;
+            max-width: 2080px;
             margin: 0 auto;
         }
         .arch-icon {
@@ -81,7 +82,7 @@
         }
 
         .tabs {
-            max-width: 1180px;
+            max-width: 1780px;
             margin: 0 auto;
             display: flex;
             align-items: center;
@@ -118,9 +119,10 @@
         }
 
         main {
-            max-width: 1180px;
+            max-width: 1780px;
             margin: 0 auto;
             padding: 28px 20px 80px;
+            margin-top: -25px;
         }
         .panel {
             display: none;
@@ -190,7 +192,7 @@
         input,
         select {
             width: 100%;
-            font-family: 'Hind Siliguri', sans-serif;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
             font-size: .95rem;
             padding: 10px 12px;
             border: 1.5px solid var(--line);
@@ -209,7 +211,7 @@
         }
 
         .btn {
-            font-family: 'Hind Siliguri', sans-serif;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
             border: none;
             border-radius: 9px;
             padding: 11px 22px;
@@ -296,29 +298,38 @@
             min-width: 180px;
         }
 
+        /* ---------- শিক্ষার্থী তালিকার টেবিল (কলাম বরাবর সুজাসুজি সাজানো) ---------- */
         table {
             width: 100%;
             border-collapse: collapse;
             font-size: .9rem;
+            table-layout: fixed;
         }
         thead th {
-            text-align: right;
-            font-family: 'Hind Siliguri', sans-serif;
+            text-align: center;
+            font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
             font-weight: 600;
             color: var(--green-deep);
             border-bottom: 2px solid var(--green-soft);
-            padding: 10px 8px;
+            padding: 10px 6px;
             white-space: nowrap;
         }
-        thead th:first-child,
-        tbody td:first-child {
-            text-align: right;
-        }
         tbody td {
-            padding: 11px 8px;
+            text-align: center;
+            vertical-align: middle;
+            padding: 11px 6px;
             border-bottom: 1px solid var(--line);
             color: var(--ink);
+            word-break: break-word;
         }
+        table col.col-roll   { width: 8%; }
+        table col.col-name   { width: 15%; }
+        table col.col-class  { width: 11%; }
+        table col.col-father { width: 15%; }
+        table col.col-addr   { width: 18%; }
+        table col.col-guard  { width: 13%; }
+        table col.col-mobile { width: 11%; }
+        table col.col-action { width: 9%; }
         tbody tr:hover {
             background: var(--green-soft);
         }
@@ -345,7 +356,8 @@
         .table-actions {
             display: flex;
             gap: 8px;
-            justify-content: flex-end;
+            justify-content: center;
+            flex-wrap: wrap;
         }
         .table-wrap {
             overflow-x: auto;
@@ -411,14 +423,14 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-family: 'Hind Siliguri', sans-serif;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
             border: 2px solid var(--paper);
         }
         .class-card.active .cls-badge {
             border-color: var(--green-deep);
         }
         .class-card .cls-label {
-            font-family: 'Noto Serif Bengali', serif;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
             font-weight: 600;
             font-size: .92rem;
             color: var(--ink);
@@ -469,7 +481,7 @@
             background: var(--gold-soft);
         }
         .year-switch .year-label {
-            font-family: 'Noto Serif Bengali', serif;
+            font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
             font-weight: 700;
             font-size: 1.05rem;
             color: var(--green-deep);
@@ -497,7 +509,7 @@
             white-space: nowrap;
         }
         .settle-amt b {
-            font-family: 'Noto Serif Bengali', serif;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
             font-size: 1.05rem;
         }
 
@@ -740,7 +752,7 @@
         footer {
             text-align: center;
             color: var(--ink-soft);
-            font-size: .78rem;
+            font-size: 15px;
             padding: 30px 20px 10px;
         }
 
@@ -772,11 +784,9 @@
 
     <div class="topbar">
         <div class="brand">
-            <svg class="arch-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M20 90 V45 C20 22 34 8 50 8 C66 8 80 22 80 45 V90" stroke="#F4E9C8" stroke-width="5" stroke-linecap="round"/>
-                <path d="M32 90 V48 C32 32 40 20 50 20 C60 20 68 32 68 48 V90" stroke="#C9A227" stroke-width="4" stroke-linecap="round"/>
-                <circle cx="50" cy="30" r="3.5" fill="#C9A227"/>
-            </svg>
+            
+                <img src="madrasa.jpeg" alt="logo" style="height: 60px; width: 60px; background: var(--green);">
+           
             <div>
                 <h1>আল হামরা নূরানী মাদ্রাসা, ধানুয়াখালী</h1>
                 <p>ছাত্র-ছাত্রী ভর্তি নিবন্ধন ও মাসিক বেতন খাতা</p>
@@ -943,7 +953,7 @@
         </div>
     </div>
 
-    <footer>আল হামরা নূরানী মাদ্রাসা, ধানুয়াখালী'র ভর্তি এবং বেতন সংরক্ষণ <br> <span>created by MOBARAK HOSEN</span></footer>
+    <footer> @copyright-2026 আল হামরা নূরানী মাদ্রাসা, ধানুয়াখালী'র ভর্তি এবং বেতন সংরক্ষণ <br> <span style="font-size: 15px; color: #7506f3;">created by MOBARAK HOSEN</span></footer>
 
     <script>
         // ---------------- Persistent Storage Engine ----------------
@@ -1491,9 +1501,19 @@
 
             wrap.innerHTML = `
                 <table>
+                  <colgroup>
+                    <col class="col-roll">
+                    <col class="col-name">
+                    <col class="col-class">
+                    <col class="col-father">
+                    <col class="col-addr">
+                    <col class="col-guard">
+                    <col class="col-mobile">
+                    <col class="col-action">
+                  </colgroup>
                   <thead>
                     <tr>
-                      <th>রোল</th><th>নাম</th><th>শ্রেণি</th><th>পিতার নাম</th><th>ঠিকানা</th><th>অভিভাবক</th><th>মোবাইল</th><th></th>
+                      <th>রোল</th><th>নাম</th><th>শ্রেণি</th><th>পিতার নাম</th><th>ঠিকানা</th><th>অভিভাবক</th><th>মোবাইল</th><th>কার্যক্রম</th>
                     </tr>
                   </thead>
                   <tbody>${rows}</tbody>
