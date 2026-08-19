@@ -26,6 +26,7 @@
         }
         body {
             margin: 0;
+            padding-top: 170px;
             background: var(--cream);
             color: var(--ink);
             font-family: 'Hind Siliguri', sans-serif;
@@ -40,9 +41,13 @@
             background: linear-gradient(180deg, var(--green-deep), var(--green));
             color: #fff;
             padding: 22px 24px 40px;
-            position: relative;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
             overflow: hidden;
             height: 170px;
+            z-index: 1000;
         }
         .topbar::after {
             content: "";
@@ -1079,32 +1084,76 @@
             }
         }
 
+        // ---------------- Fast Firebase Cache Engine ----------------
+        // Firebase-এর প্রতিটি key আলাদা আলাদা করে পড়ার বদলে একবারে
+        // madrasaData পুরোটা RAM cache-এ আনা হয়। ফলে পরের সব read প্রায় instant।
+        let firebaseDataCache = null;
+        let firebaseDataLoadPromise = null;
+
+        async function loadFirebaseDataCache(db) {
+            if (firebaseDataCache !== null) return firebaseDataCache;
+            if (firebaseDataLoadPromise) return firebaseDataLoadPromise;
+
+            firebaseDataLoadPromise = (async () => {
+                try {
+                    const snap = await window.firebaseFns.get(window.firebaseFns.ref(db, 'madrasaData'));
+                    firebaseDataCache = snap.exists() ? (snap.val() || {}) : {};
+
+                    // RAM cache-এ cloud data বসিয়ে দিচ্ছি।
+                    Object.keys(firebaseDataCache).forEach(key => {
+                        memStore[key] = firebaseDataCache[key];
+                    });
+
+                    return firebaseDataCache;
+                } catch (e) {
+                    console.warn('Firebase initial data load failed:', e);
+                    firebaseDataCache = {};
+                    return firebaseDataCache;
+                }
+            })();
+
+            return firebaseDataLoadPromise;
+        }
+
         async function storeGet(key) {
+            // 1) সবচেয়ে দ্রুত: RAM cache
+            if (Object.prototype.hasOwnProperty.call(memStore, key)) {
+                return memStore[key];
+            }
+
+            // 2) তারপর LocalStorage — Firebase আসার আগেই UI দেখানো যাবে
+            if (hasRealStorage) {
+                try {
+                    const r = await window.storage.get(key, SHARED);
+                    if (r && r.value !== undefined) {
+                        memStore[key] = r.value;
+                        return r.value;
+                    }
+                } catch (e) {}
+            }
+
+            // 3) LocalStorage-এ না থাকলে Firebase cache থেকে নিন
             const db = await waitForFirebase();
             if (db && window.firebaseFns) {
                 try {
-                    const snap = await window.firebaseFns.get(window.firebaseFns.ref(db, 'madrasaData/' + key));
-                    if (snap.exists()) {
-                        const value = snap.val();
-                        memStore[key] = value;
-                        return value;
+                    const data = await loadFirebaseDataCache(db);
+                    if (Object.prototype.hasOwnProperty.call(data, key)) {
+                        memStore[key] = data[key];
+                        return data[key];
                     }
                 } catch (e) {
                     console.warn('Firebase read failed:', e);
                 }
             }
 
-            if (hasRealStorage) {
-                try {
-                    const r = await window.storage.get(key, SHARED);
-                    if (r) { memStore[key] = r.value; return r.value; }
-                } catch (e) {}
-            }
-            return Object.prototype.hasOwnProperty.call(memStore, key) ? memStore[key] : null;
+            return null;
         }
 
         async function storeSet(key, value) {
+            // UI সঙ্গে সঙ্গে নতুন data দেখাবে
             memStore[key] = value;
+            if (firebaseDataCache !== null) firebaseDataCache[key] = value;
+
             let cloudSaved = false;
             const db = await waitForFirebase();
 
@@ -1117,6 +1166,7 @@
                 }
             }
 
+            // Cloud save ব্যর্থ হলে local backup রাখুন
             if (!cloudSaved && hasRealStorage) {
                 try {
                     const r = await window.storage.set(key, value, SHARED);
@@ -1130,6 +1180,8 @@
 
         async function storeDelete(key) {
             delete memStore[key];
+            if (firebaseDataCache !== null) delete firebaseDataCache[key];
+
             const db = await waitForFirebase();
             if (db && window.firebaseFns) {
                 try {
@@ -1145,20 +1197,8 @@
 
         async function storeListKeys(prefix) {
             const keySet = new Set();
-            const db = await waitForFirebase();
 
-            if (db && window.firebaseFns) {
-                try {
-                    const snap = await window.firebaseFns.get(window.firebaseFns.ref(db, 'madrasaData'));
-                    if (snap.exists()) {
-                        const data = snap.val() || {};
-                        Object.keys(data).forEach(k => { if (k.startsWith(prefix)) keySet.add(k); });
-                    }
-                } catch (e) {
-                    console.warn('Firebase list failed:', e);
-                }
-            }
-
+            // Local/RAM থেকে সঙ্গে সঙ্গে keys পাওয়া যাবে
             if (hasRealStorage) {
                 try {
                     const r = await window.storage.list(prefix, SHARED);
@@ -1168,11 +1208,26 @@
                 }
             }
 
-            for (const k of Object.keys(memStore)) {
+            Object.keys(memStore).forEach(k => {
                 if (k.startsWith(prefix)) keySet.add(k);
+            });
+
+            // Firebase থেকে root data একবারই load হবে
+            const db = await waitForFirebase();
+            if (db && window.firebaseFns) {
+                try {
+                    const data = await loadFirebaseDataCache(db);
+                    Object.keys(data).forEach(k => {
+                        if (k.startsWith(prefix)) keySet.add(k);
+                    });
+                } catch (e) {
+                    console.warn('Firebase list failed:', e);
+                }
             }
+
             return Array.from(keySet);
         }
+
 
         // ---------------- Class-Code Mapping & Storage Handlers ----------------
         const classCodeMap = {
@@ -1849,8 +1904,15 @@
         if (!hasRealStorage || (typeof window.__storageHealthy !== 'undefined' && !window.__storageHealthy)) {
             showStorageBanner();
         }
-        renderStudentsTable();
-        renderFeeLedger();
+        // প্রথমে local/RAM cache থেকে দ্রুত UI দেখান।
+        Promise.all([renderStudentsTable(), renderFeeLedger()]).catch(console.error);
+
+        // Firebase ready হলে একবারে পুরো data cache করে UI refresh করুন।
+        window.firebaseReady.then(async (db) => {
+            if (!db) return;
+            await loadFirebaseDataCache(db);
+            await Promise.all([renderStudentsTable(), renderFeeLedger()]);
+        }).catch(console.error);
     </script>
     <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
