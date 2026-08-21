@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>মাদ্রাসা ভর্তি ও বেতন ব্যবস্থাপনা</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Noto+Serif+Bengali:wght@500;600;700;800&display=swap" rel="stylesheet">
+
     <style>
         :root {
             --green-deep: #0F3D2E;
@@ -21,9 +23,11 @@
             --red: #A6402F;
             --shadow: 0 6px 20px rgba(15, 61, 46, 0.08);
         }
+
         * {
             box-sizing: border-box;
         }
+
         body {
             margin: 0;
             padding-top: 170px;
@@ -32,11 +36,13 @@
             font-family: 'Hind Siliguri', sans-serif;
             -webkit-font-smoothing: antialiased;
         }
+
         ::selection {
             background: var(--gold-soft);
         }
 
-        /* ---------- Header / Arch motif ---------- */
+        /* ================= HEADER ================= */
+
         .topbar {
             background: linear-gradient(180deg, var(--green-deep), var(--green));
             color: #fff;
@@ -49,6 +55,7 @@
             height: 170px;
             z-index: 1000;
         }
+
         .topbar::after {
             content: "";
             position: absolute;
@@ -56,10 +63,15 @@
             right: 0;
             bottom: 0;
             height: 14px;
-            background-image: radial-gradient(circle at 10px 0, transparent 10px, var(--cream) 10.5px);
+            background-image: radial-gradient(
+                circle at 10px 0,
+                transparent 10px,
+                var(--cream) 10.5px
+            );
             background-size: 20px 14px;
             background-repeat: repeat-x;
         }
+
         .brand {
             display: flex;
             align-items: center;
@@ -67,11 +79,15 @@
             max-width: 2080px;
             margin: 0 auto;
         }
-        .arch-icon {
-            width: 46px;
-            height: 46px;
-            flex: none;
+
+        .brand img {
+            height: 60px;
+            width: 60px;
+            object-fit: cover;
+            border-radius: 10px;
+            background: var(--green);
         }
+
         .brand h1 {
             font-family: 'Noto Serif Bengali', serif;
             font-weight: 700;
@@ -79,6 +95,7 @@
             margin: 0;
             letter-spacing: .2px;
         }
+
         .brand p {
             margin: 2px 0 0;
             font-size: .85rem;
@@ -88,19 +105,20 @@
 
         .tabs {
             max-width: 1780px;
-            margin: 0 auto;
+            margin: 22px auto 0;
             display: flex;
             align-items: center;
             gap: 6px;
-            margin-top: 22px;
             flex-wrap: wrap;
         }
+
         .tab-corner {
             margin-left: auto;
             font-size: .82rem;
             padding: 7px 14px;
             opacity: .9;
         }
+
         .tab-btn {
             font-family: 'Hind Siliguri', sans-serif;
             background: rgba(255, 255, 255, 0.08);
@@ -113,9 +131,11 @@
             font-weight: 500;
             transition: all .15s ease;
         }
+
         .tab-btn:hover {
             background: rgba(255, 255, 255, 0.16);
         }
+
         .tab-btn.active {
             background: var(--gold);
             border-color: var(--gold);
@@ -129,18 +149,22 @@
             padding: 28px 20px 80px;
             margin-top: -25px;
         }
+
         .panel {
             display: none;
         }
+
         .panel.active {
             display: block;
             animation: fadeIn .25s ease;
         }
+
         @keyframes fadeIn {
             from {
                 opacity: 0;
                 transform: translateY(6px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -161,12 +185,14 @@
             padding: 26px;
             margin-bottom: 20px;
         }
+
         .card h2 {
             font-family: 'Noto Serif Bengali', serif;
             font-size: 1.2rem;
             color: var(--green-deep);
             margin: 0 0 4px;
         }
+
         .card .sub {
             color: var(--ink-soft);
             font-size: .88rem;
@@ -178,6 +204,7 @@
             grid-template-columns: 1fr 1fr;
             gap: 16px 20px;
         }
+
         @media (max-width:640px) {
             .grid {
                 grid-template-columns: 1fr;
@@ -191,9 +218,11 @@
             color: var(--green-deep);
             margin-bottom: 6px;
         }
+
         .req {
             color: var(--red);
         }
+
         input,
         select {
             width: 100%;
@@ -207,10 +236,12 @@
             outline: none;
             transition: border-color .15s;
         }
+
         input:focus,
         select:focus {
             border-color: var(--green);
         }
+
         .field {
             margin-bottom: 2px;
         }
@@ -225,44 +256,65 @@
             cursor: pointer;
             transition: transform .1s ease, opacity .15s;
         }
+
         .btn:active {
             transform: scale(.97);
         }
+
         .btn-primary {
             background: var(--green-deep);
             color: #fff;
         }
+
         .btn-primary:hover {
             background: var(--green);
         }
+
         .btn-gold {
             background: var(--gold);
             color: var(--green-deep);
         }
+
         .btn-gold:hover {
             opacity: .9;
         }
+
         .btn-ghost {
             background: transparent;
             color: var(--green-deep);
             border: 1.5px solid var(--line);
         }
+
         .btn-ghost:hover {
             border-color: var(--green);
         }
+
         .btn-danger {
             background: #fff;
             color: var(--red);
             border: 1.5px solid #E9C9C2;
         }
+
         .btn-danger:hover {
             background: #FCEEEA;
         }
+
+        .btn-alert {
+            background: #fff;
+            color: #B5451D;
+            border: 1.5px solid #F0C4A8;
+        }
+
+        .btn-alert:hover {
+            background: #FDEEE3;
+        }
+
         .btn-sm {
             padding: 7px 14px;
             font-size: .82rem;
             border-radius: 7px;
         }
+
         .row-actions {
             display: flex;
             gap: 16px;
@@ -277,48 +329,56 @@
             font-size: .88rem;
             display: none;
         }
+
         .msg.show {
             display: block;
         }
+
         .msg.ok {
             background: var(--green-soft);
             color: var(--green-deep);
             border: 1px solid #bcd6c4;
         }
+
         .msg.err {
             background: #FCEEEA;
             color: var(--red);
             border: 1px solid #E9C9C2;
         }
 
-        /* ---------- Search / list ---------- */
+        /* ================= SEARCH ================= */
+
         .search-row {
             display: flex;
             gap: 10px;
             margin-bottom: 18px;
             flex-wrap: wrap;
         }
+
         .search-row input {
             flex: 1;
             min-width: 180px;
         }
 
-        /* ---------- শিক্ষার্থী তালিকার টেবিল (কলাম বরাবর সুজাসুজি সাজানো) ---------- */
+        /* ================= STUDENT TABLE ================= */
+
         table {
             width: 100%;
             border-collapse: collapse;
-            font-size: .9rem;
+            font-size: 1.5rem;
             table-layout: fixed;
         }
+
         thead th {
             text-align: center;
-            font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
             font-weight: 600;
             color: var(--green-deep);
             border-bottom: 2px solid var(--green-soft);
             padding: 10px 6px;
             white-space: nowrap;
         }
+
         tbody td {
             text-align: center;
             vertical-align: middle;
@@ -327,17 +387,43 @@
             color: var(--ink);
             word-break: break-word;
         }
-        table col.col-roll   { width: 8%; }
-        table col.col-name   { width: 15%; }
-        table col.col-class  { width: 11%; }
-        table col.col-father { width: 15%; }
-        table col.col-addr   { width: 18%; }
-        table col.col-guard  { width: 13%; }
-        table col.col-mobile { width: 11%; }
-        table col.col-action { width: 9%; }
+
+        table col.col-roll {
+            width: 8%;
+        }
+
+        table col.col-name {
+            width: 10%;
+        }
+
+        table col.col-class {
+            width: 11%;
+        }
+
+        table col.col-father {
+            width: 15%;
+        }
+
+        table col.col-addr {
+            width: 18%;
+        }
+
+        table col.col-guard {
+            width: 13%;
+        }
+
+        table col.col-mobile {
+            width: 11%;
+        }
+
+        table col.col-action {
+            width: 9%;
+        }
+
         tbody tr:hover {
             background: var(--green-soft);
         }
+
         .roll-chip {
             display: inline-block;
             background: var(--gold-soft);
@@ -345,41 +431,48 @@
             font-weight: 700;
             padding: 2px 10px;
             border-radius: 999px;
-            font-size: .82rem;
+            font-size: 1rem;
         }
+
         .empty-state {
             text-align: center;
             padding: 40px 20px;
             color: var(--ink-soft);
         }
+
         .empty-state svg {
             width: 52px;
             height: 52px;
             margin-bottom: 10px;
             opacity: .5;
         }
+
         .table-actions {
             display: flex;
             gap: 8px;
             justify-content: center;
             flex-wrap: wrap;
         }
+
         .table-wrap {
             overflow-x: auto;
         }
 
-        /* ---------- Fee ledger tab ---------- */
+        /* ================= CLASS SELECTOR ================= */
+
         .class-selector {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 14px;
             margin-bottom: 24px;
         }
+
         @media (max-width:640px) {
             .class-selector {
                 grid-template-columns: 1fr 1fr;
             }
         }
+
         .class-card {
             display: flex;
             flex-direction: column;
@@ -392,28 +485,34 @@
             cursor: pointer;
             transition: all .15s ease;
         }
+
         .class-card:hover {
             border-color: var(--gold);
             transform: translateY(-2px);
             box-shadow: var(--shadow);
         }
+
         .class-card.active {
             background: linear-gradient(180deg, var(--green-deep), var(--green));
             border-color: var(--green-deep);
             box-shadow: var(--shadow);
         }
+
         .class-card .cls-icon {
             width: 34px;
             height: 34px;
             color: var(--green-deep);
         }
+
         .class-card.active .cls-icon {
             color: var(--gold-soft);
         }
+
         .cls-icon-wrap {
             position: relative;
             display: flex;
         }
+
         .cls-badge {
             position: absolute;
             top: -6px;
@@ -431,9 +530,11 @@
             font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
             border: 2px solid var(--paper);
         }
+
         .class-card.active .cls-badge {
             border-color: var(--green-deep);
         }
+
         .class-card .cls-label {
             font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
             font-weight: 600;
@@ -441,16 +542,22 @@
             color: var(--ink);
             text-align: center;
         }
+
         .class-card.active .cls-label {
             color: #fff;
         }
+
         .class-card .cls-count {
             font-size: .75rem;
             color: var(--ink-soft);
         }
+
         .class-card.active .cls-count {
             color: var(--gold-soft);
         }
+
+        /* ================= LEDGER ================= */
+
         .ledger-toolbar {
             display: flex;
             align-items: center;
@@ -459,6 +566,7 @@
             flex-wrap: wrap;
             margin-bottom: 18px;
         }
+
         .year-switch {
             display: flex;
             align-items: center;
@@ -468,6 +576,7 @@
             border-radius: 10px;
             padding: 6px 8px;
         }
+
         .year-switch button {
             width: 30px;
             height: 30px;
@@ -482,17 +591,20 @@
             align-items: center;
             justify-content: center;
         }
+
         .year-switch button:hover {
             background: var(--gold-soft);
         }
+
         .year-switch .year-label {
-            font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
             font-weight: 700;
             font-size: 1.05rem;
             color: var(--green-deep);
             min-width: 70px;
             text-align: center;
         }
+
         .ledger-search {
             max-width: 280px;
             min-width: 180px;
@@ -508,11 +620,13 @@
             border-radius: 10px;
             padding: 8px 8px 8px 16px;
         }
+
         .settle-amt {
             font-size: .85rem;
             color: var(--green-deep);
             white-space: nowrap;
         }
+
         .settle-amt b {
             font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
             font-size: 1.05rem;
@@ -524,14 +638,16 @@
             border-radius: 12px;
             max-height: 72vh;
         }
+
         table.ledger {
             border-collapse: separate;
             border-spacing: 0;
-            font-size: .78rem;
+            font-size: 1rem;
             min-width: 100%;
             width: 100%;
             table-layout: fixed;
         }
+
         table.ledger thead th {
             position: sticky;
             top: 0;
@@ -545,10 +661,12 @@
             border-bottom: 1px solid var(--green-deep);
             border-right: 1px solid rgba(255, 255, 255, 0.12);
         }
+
         table.ledger thead th.col-total {
             background: var(--gold);
             color: var(--green-deep);
         }
+
         table.ledger tbody td {
             padding: 6px 4px;
             text-align: center;
@@ -558,9 +676,11 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
+
         table.ledger tbody tr:nth-child(even) {
             background: #FBFAF5;
         }
+
         table.ledger tbody tr:hover {
             background: var(--green-soft);
         }
@@ -574,6 +694,7 @@
             text-align: center;
             width: 48px;
         }
+
         th.col-name,
         td.col-name {
             position: sticky;
@@ -584,6 +705,7 @@
             width: 110px;
             padding-right: 8px;
         }
+
         th.col-father,
         td.col-father {
             position: sticky;
@@ -595,22 +717,26 @@
             padding-right: 8px;
             box-shadow: 2px 0 4px rgba(0, 0, 0, 0.05);
         }
+
         thead th.col-roll,
         thead th.col-name,
         thead th.col-father {
             background: var(--green-deep);
             z-index: 3;
         }
+
         tbody td.col-roll,
         tbody td.col-name,
         tbody td.col-father {
             background: var(--paper);
         }
+
         tbody tr:nth-child(even) td.col-roll,
         tbody tr:nth-child(even) td.col-name,
         tbody tr:nth-child(even) td.col-father {
             background: #FBFAF5;
         }
+
         tbody tr:hover td.col-roll,
         tbody tr:hover td.col-name,
         tbody tr:hover td.col-father {
@@ -621,9 +747,11 @@
             cursor: pointer;
             transition: background .1s;
         }
+
         td.month-cell:hover {
             background: var(--gold-soft) !important;
         }
+
         .paid-amt {
             display: inline-block;
             background: var(--green-soft);
@@ -632,18 +760,21 @@
             border-radius: 7px;
             padding: 2px 6px;
             font-weight: 700;
-            font-size: .76rem;
+            font-size: .96rem;
         }
+
         .unpaid-dash {
             color: #C9C2AC;
             font-size: 1rem;
         }
+
         td.col-total {
             font-weight: 700;
             color: var(--green-deep);
             background: var(--gold-soft) !important;
             width: 76px;
         }
+
         tfoot td {
             padding: 10px 6px;
             text-align: center;
@@ -653,16 +784,19 @@
             color: var(--green-deep);
             white-space: nowrap;
         }
+
         tfoot td.col-name {
             text-align: right;
             background: var(--green-soft);
         }
+
         tfoot td.col-grand {
             background: var(--gold);
             color: var(--green-deep);
         }
 
-        /* Modal for entering a month's fee */
+        /* ================= MODAL ================= */
+
         .modal-overlay {
             display: none;
             position: fixed;
@@ -673,9 +807,11 @@
             z-index: 50;
             padding: 16px;
         }
+
         .modal-overlay.show {
             display: flex;
         }
+
         .modal-box {
             background: #fff;
             border-radius: 14px;
@@ -686,17 +822,20 @@
             max-height: 88vh;
             overflow-y: auto;
         }
+
         .modal-box h3 {
             font-family: 'Noto Serif Bengali', serif;
             color: var(--green-deep);
             margin: 0 0 2px;
             font-size: 1.1rem;
         }
+
         .modal-box .modal-sub {
             color: var(--ink-soft);
             font-size: .85rem;
             margin: 0 0 16px;
         }
+
         .modal-close {
             float: right;
             background: none;
@@ -706,9 +845,11 @@
             cursor: pointer;
             line-height: 1;
         }
+
         .existing-payments {
             margin-bottom: 16px;
         }
+
         .existing-payments .pay-row {
             display: flex;
             justify-content: space-between;
@@ -719,18 +860,29 @@
             margin-bottom: 6px;
             font-size: .87rem;
         }
+
         .modal-form {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 12px;
         }
+
         .modal-actions {
             display: flex;
             gap: 10px;
             margin-top: 16px;
+            flex-wrap: wrap;
         }
+
         .modal-msg {
             margin-top: 10px;
+        }
+
+        .sms-status {
+            margin-top: 8px;
+            font-size: .8rem;
+            color: var(--ink-soft);
+            line-height: 1.5;
         }
 
         .loading {
@@ -739,6 +891,7 @@
             color: var(--ink-soft);
             font-size: .9rem;
         }
+
         .storage-banner {
             display: none;
             max-width: 1180px;
@@ -751,9 +904,11 @@
             font-size: .85rem;
             line-height: 1.5;
         }
+
         .storage-banner.show {
             display: block;
         }
+
         footer {
             text-align: center;
             color: var(--ink-soft);
@@ -764,1186 +919,4756 @@
         .modal-form .field {
             margin-bottom: 0;
         }
+
         .modal-form .field:first-child {
             grid-column: 1 / -1;
         }
+
         .modal-form .field:last-child {
             grid-column: 1 / -1;
         }
+
         @media (min-width: 481px) {
             .modal-form .field:first-child {
                 grid-column: 1 / 2;
             }
+
             .modal-form .field:last-child {
                 grid-column: 2 / 3;
             }
         }
+
         .btn:disabled {
             opacity: .6;
             cursor: not-allowed;
             transform: none !important;
         }
+
+        @media (max-width: 700px) {
+            body {
+                padding-top: 205px;
+            }
+
+            .topbar {
+                height: 205px;
+                padding: 16px 12px 34px;
+            }
+
+            .brand {
+                gap: 10px;
+            }
+
+            .brand img {
+                width: 48px;
+                height: 48px;
+            }
+
+            .brand h1 {
+                font-size: 1.05rem;
+            }
+
+            .brand p {
+                font-size: .72rem;
+            }
+
+            .tabs {
+                margin-top: 14px;
+                gap: 5px;
+            }
+
+            .tab-btn {
+                padding: 7px 10px;
+                font-size: .78rem;
+            }
+
+            .tab-corner {
+                margin-left: 0;
+            }
+
+            main {
+                padding: 20px 10px 60px;
+            }
+
+            .card {
+                padding: 17px;
+            }
+
+            .ledger-toolbar {
+                align-items: stretch;
+            }
+
+            .settle-box {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .ledger-search {
+                max-width: none;
+                width: 100%;
+            }
+        }
     </style>
 </head>
+
 <body>
 
+    <!-- ================= HEADER ================= -->
+
     <div class="topbar">
+
         <div class="brand">
-            
-                <img src="madrasa.jpeg" alt="logo" style="height: 60px; width: 60px; background: var(--green);">
-           
+
+            <img src="madrasa.jpeg" alt="logo">
+
             <div>
                 <h1>আল হামরা নূরানী মাদ্রাসা, ধানুয়াখালী</h1>
                 <p>ছাত্র-ছাত্রী ভর্তি নিবন্ধন ও মাসিক বেতন খাতা</p>
             </div>
+
         </div>
+
         <div class="tabs">
-            <button class="tab-btn active" data-tab="fees">বেতন খাতা</button>
-            <button class="tab-btn" data-tab="students">শিক্ষার্থী তালিকা</button>
-            <button class="tab-btn tab-corner" data-tab="admission">+ ভর্তি ফরম</button>
+
+            <button class="tab-btn active" data-tab="fees">
+                বেতন খাতা
+            </button>
+
+            <button class="tab-btn" data-tab="students">
+                শিক্ষার্থী তালিকা
+            </button>
+
+            <button class="tab-btn tab-corner" data-tab="admission">
+                + ভর্তি ফরম
+            </button>
+
         </div>
+
     </div>
 
     <div class="storage-banner" id="storageBanner">
-        ⚠️ সতর্কতা: আপনার ব্রাউজারে স্থায়ী স্টোরেজ সক্রিয় নেই। তথ্য লোকাল স্টোরেজে সংরক্ষিত হচ্ছে — যতক্ষণ না আপনি ব্রাউজারের ক্যাশে/ডেটা ক্লিয়ার করছেন, ততক্ষণ নিরাপদ থাকবে।
+        ⚠️ সতর্কতা: আপনার ব্রাউজারে স্থায়ী স্টোরেজ সক্রিয় নেই।
+        তথ্য লোকাল স্টোরেজে সংরক্ষিত হচ্ছে।
     </div>
 
     <main>
 
-        <!-- ============ ADMISSION TAB ============ -->
+        <!-- ================= ADMISSION ================= -->
+
         <section class="panel" id="panel-admission">
+
             <div class="card narrow">
-                <h2 id="admFormTitle">নতুন ভর্তি ফরম</h2>
-                <p class="sub">সকল ঘর সঠিকভাবে পূরণ করুন। রোল নম্বর অনুযায়ী তথ্য বেতন খাতায় স্বয়ংক্রিয়ভাবে যুক্ত হবে।</p>
+
+                <h2 id="admFormTitle">
+                    নতুন ভর্তি ফরম
+                </h2>
+
+                <p class="sub">
+                    সকল ঘর সঠিকভাবে পূরণ করুন।
+                    রোল নম্বর অনুযায়ী তথ্য বেতন খাতায় স্বয়ংক্রিয়ভাবে যুক্ত হবে।
+                </p>
 
                 <form id="admissionForm">
+
                     <input type="hidden" id="editingRoll" value="">
                     <input type="hidden" id="editingClass" value="">
+
                     <div class="grid">
+
                         <div class="field">
-                            <label>ছাত্র/ছাত্রীর নাম <span class="req">*</span></label>
-                            <input type="text" id="f_name" required placeholder="যেমনঃ মোঃ ইয়াসিন আরাফাত">
+                            <label>
+                                ছাত্র/ছাত্রীর নাম
+                                <span class="req">*</span>
+                            </label>
+
+                            <input
+                                type="text"
+                                id="f_name"
+                                required
+                                placeholder="যেমনঃ মোঃ ইয়াসিন আরাফাত">
                         </div>
+
                         <div class="field">
-                            <label>পিতার নাম <span class="req">*</span></label>
-                            <input type="text" id="f_father" required placeholder="পিতার পূর্ণ নাম">
+                            <label>
+                                পিতার নাম
+                                <span class="req">*</span>
+                            </label>
+
+                            <input
+                                type="text"
+                                id="f_father"
+                                required
+                                placeholder="পিতার পূর্ণ নাম">
                         </div>
+
                         <div class="field">
-                            <label>রোল নম্বর <span class="req">*</span></label>
-                            <input type="text" id="f_roll" required placeholder="যেমনঃ ১০১">
+                            <label>
+                                রোল নম্বর
+                                <span class="req">*</span>
+                            </label>
+
+                            <input
+                                type="text"
+                                id="f_roll"
+                                required
+                                placeholder="যেমনঃ ১০১">
                         </div>
+
                         <div class="field">
-                            <label>শ্রেণি <span class="req">*</span></label>
+                            <label>
+                                শ্রেণি
+                                <span class="req">*</span>
+                            </label>
+
                             <select id="f_class" required>
-                                <option value="">-- শ্রেণি বাছাই করুন --</option>
-                                <option value="শিশু শ্রেণি">শিশু শ্রেণি</option>
-                                <option value="প্রথম শ্রেণি">প্রথম শ্রেণি</option>
-                                <option value="দ্বিতীয় শ্রেণি">দ্বিতীয় শ্রেণি</option>
-                                <option value="তৃতীয় শ্রেণি">তৃতীয় শ্রেণি</option>
+
+                                <option value="">
+                                    -- শ্রেণি বাছাই করুন --
+                                </option>
+
+                                <option value="শিশু শ্রেণি">
+                                    শিশু শ্রেণি
+                                </option>
+
+                                <option value="প্রথম শ্রেণি">
+                                    প্রথম শ্রেণি
+                                </option>
+
+                                <option value="দ্বিতীয় শ্রেণি">
+                                    দ্বিতীয় শ্রেণি
+                                </option>
+
+                                <option value="তৃতীয় শ্রেণি">
+                                    তৃতীয় শ্রেণি
+                                </option>
+
                             </select>
                         </div>
+
                         <div class="field">
-                            <label>মাসিক বেতন (টাকা)</label>
-                            <input type="text" id="f_fee" min="0" placeholder="যেমনঃ ৫০০">
+                            <label>
+                                মাসিক বেতন (টাকা)
+                            </label>
+
+                            <input
+                                type="number"
+                                id="f_fee"
+                                min="0"
+                                placeholder="যেমনঃ ৫০০">
                         </div>
+
                         <div class="field">
-                            <label>গ্রাম <span class="req">*</span></label>
-                            <input type="text" id="f_village" required placeholder="গ্রামের নাম">
+                            <label>
+                                গ্রাম
+                                <span class="req">*</span>
+                            </label>
+
+                            <input
+                                type="text"
+                                id="f_village"
+                                required
+                                placeholder="গ্রামের নাম">
                         </div>
+
                         <div class="field">
-                            <label>উপজেলা <span class="req">*</span></label>
-                            <input type="text" id="f_upazila" required placeholder="উপজেলার নাম">
+                            <label>
+                                উপজেলা
+                                <span class="req">*</span>
+                            </label>
+
+                            <input
+                                type="text"
+                                id="f_upazila"
+                                required
+                                placeholder="উপজেলার নাম">
                         </div>
+
                         <div class="field">
-                            <label>জেলা <span class="req">*</span></label>
-                            <input type="text" id="f_district" required placeholder="জেলার নাম">
+                            <label>
+                                জেলা
+                                <span class="req">*</span>
+                            </label>
+
+                            <input
+                                type="text"
+                                id="f_district"
+                                required
+                                placeholder="জেলার নাম">
                         </div>
+
                         <div class="field">
-                            <label>অভিভাবকের নাম <span class="req">*</span></label>
-                            <input type="text" id="f_guardian" required placeholder="অভিভাবকের নাম">
+                            <label>
+                                অভিভাবকের নাম
+                                <span class="req">*</span>
+                            </label>
+
+                            <input
+                                type="text"
+                                id="f_guardian"
+                                required
+                                placeholder="অভিভাবকের নাম">
                         </div>
+
                         <div class="field">
-                            <label>মোবাইল নম্বর <span class="req">*</span></label>
-                            <input type="text" id="f_mobile" required placeholder="যেমনঃ ০১৭xxxxxxxx">
+                            <label>
+                                মোবাইল নম্বর
+                                <span class="req">*</span>
+                            </label>
+
+                            <input
+                                type="text"
+                                id="f_mobile"
+                                required
+                                placeholder="যেমনঃ ০১৭xxxxxxxx">
                         </div>
+
                         <div class="field">
-                            <label>ভর্তির তারিখ</label>
-                            <input type="date" id="f_date">
+                            <label>
+                                ভর্তির তারিখ
+                            </label>
+
+                            <input
+                                type="date"
+                                id="f_date">
                         </div>
+
                     </div>
 
                     <div class="row-actions">
-                        <button type="submit" class="btn btn-primary" id="submitBtn">ভর্তি ফরম সংরক্ষণ করুন</button>
-                        <button type="button" class="btn btn-ghost" id="clearFormBtn">ফাঁকা করুন</button>
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary"
+                            id="submitBtn">
+
+                            ভর্তি ফরম সংরক্ষণ করুন
+
+                        </button>
+
+                        <button
+                            type="button"
+                            class="btn btn-ghost"
+                            id="clearFormBtn">
+
+                            ফাঁকা করুন
+
+                        </button>
+
                     </div>
+
                     <div class="msg" id="admMsg"></div>
+
                 </form>
+
             </div>
+
         </section>
 
-        <!-- ============ STUDENT LIST TAB ============ -->
+        <!-- ================= STUDENT LIST ================= -->
+
         <section class="panel" id="panel-students">
+
             <div class="card">
-                <h2>শিক্ষার্থী তালিকা</h2>
-                <p class="sub" id="studentsTopSub">প্রথমে একটি শ্রেণি বাছাই করুন — সেই শ্রেণির শিক্ষার্থী তালিকা দেখা যাবে।</p>
 
-                <div class="class-selector" id="studentClassSelector"></div>
+                <h2>
+                    শিক্ষার্থী তালিকা
+                </h2>
 
-                <div id="studentsListArea" style="display:none;">
-                    <div class="search-row">
-                        <input type="text" id="studentSearch" placeholder="রোল / নাম / মোবাইল দিয়ে খুঁজুন...">
-                    </div>
-                    <div id="studentsTableWrap" class="table-wrap"><div class="loading">তথ্য লোড হচ্ছে...</div></div>
+                <p class="sub" id="studentsTopSub">
+                    প্রথমে একটি শ্রেণি বাছাই করুন —
+                    সেই শ্রেণির শিক্ষার্থী তালিকা দেখা যাবে।
+                </p>
+
+                <div
+                    class="class-selector"
+                    id="studentClassSelector">
                 </div>
+
+                <div
+                    id="studentsListArea"
+                    style="display:none;">
+
+                    <div class="search-row">
+
+                        <input
+                            type="text"
+                            id="studentSearch"
+                            placeholder="রোল / নাম / মোবাইল দিয়ে খুঁজুন...">
+
+                    </div>
+
+                    <div
+                        id="studentsTableWrap"
+                        class="table-wrap">
+
+                        <div class="loading">
+                            তথ্য লোড হচ্ছে...
+                        </div>
+
+                    </div>
+
+                </div>
+
             </div>
+
         </section>
 
-        <!-- ============ FEE REGISTER TAB ============ -->
+        <!-- ================= FEE REGISTER ================= -->
+
         <section class="panel active" id="panel-fees">
+
             <div class="card">
-                <h2>বেতন খাতা</h2>
-                <p class="sub" id="feeTopSub">প্রথমে একটি শ্রেণি বাছাই করুন — সেই শ্রেণির বেতন খাতা খুলে যাবে।</p>
 
-                <div class="class-selector" id="classSelector"></div>
+                <h2>
+                    বেতন খাতা
+                </h2>
 
-                <div id="ledgerArea" style="display:none;">
+                <p class="sub" id="feeTopSub">
+                    প্রথমে একটি শ্রেণি বাছাই করুন —
+                    সেই শ্রেণির বেতন খাতা খুলে যাবে।
+                </p>
+
+                <div
+                    class="class-selector"
+                    id="classSelector">
+                </div>
+
+                <div
+                    id="ledgerArea"
+                    style="display:none;">
+
                     <div class="ledger-toolbar">
+
                         <div class="year-switch">
-                            <button type="button" id="yearPrev" aria-label="আগের বছর">‹</button>
-                            <span class="year-label" id="yearLabel"></span>
-                            <button type="button" id="yearNext" aria-label="পরের বছর">›</button>
+
+                            <button
+                                type="button"
+                                id="yearPrev">
+                                ‹
+                            </button>
+
+                            <span
+                                class="year-label"
+                                id="yearLabel">
+                            </span>
+
+                            <button
+                                type="button"
+                                id="yearNext">
+                                ›
+                            </button>
+
                         </div>
-                        <input type="text" id="ledgerSearch" class="ledger-search" placeholder="রোল বা নাম দিয়ে খুঁজুন...">
+
+                        <input
+                            type="text"
+                            id="ledgerSearch"
+                            class="ledger-search"
+                            placeholder="রোল বা নাম দিয়ে খুঁজুন...">
+
                         <div class="settle-box">
-                            <span class="settle-amt">সর্বশেষ হিসাবের পর আদায়ঃ <b id="settleAmt">৳০</b></span>
-                            <button type="button" class="btn btn-gold btn-sm" id="settleBtn">হিসাব শেষ</button>
+
+                            <span class="settle-amt">
+                                সর্বশেষ হিসাবের পর আদায়ঃ
+                                <b id="settleAmt">৳০</b>
+                            </span>
+
+                            <button
+                                type="button"
+                                class="btn btn-gold btn-sm"
+                                id="settleBtn">
+
+                                হিসাব শেষ
+
+                            </button>
+
                         </div>
+
                     </div>
 
-                    <div id="feeMsg" class="msg"></div>
+                    <div
+                        id="feeMsg"
+                        class="msg">
+                    </div>
 
-                    <div id="ledgerWrap" class="ledger-wrap"><div class="loading">বেতন খাতা লোড হচ্ছে...</div></div>
+                    <div
+                        id="ledgerWrap"
+                        class="ledger-wrap">
+
+                        <div class="loading">
+                            বেতন খাতা লোড হচ্ছে...
+                        </div>
+
+                    </div>
+
                 </div>
+
             </div>
+
         </section>
 
     </main>
 
-    <!-- Month payment modal -->
-    <div class="modal-overlay" id="modalOverlay">
-        <div class="modal-box">
-            <button type="button" class="modal-close" id="modalCloseBtn">&times;</button>
-            <h3 id="modalTitle"></h3>
-            <p class="modal-sub" id="modalSub"></p>
+    <!-- ================= PAYMENT MODAL ================= -->
 
-            <div class="existing-payments" id="modalExisting"></div>
+    <div
+        class="modal-overlay"
+        id="modalOverlay">
+
+        <div class="modal-box">
+
+            <button
+                type="button"
+                class="modal-close"
+                id="modalCloseBtn">
+
+                &times;
+
+            </button>
+
+            <h3 id="modalTitle"></h3>
+
+            <p
+                class="modal-sub"
+                id="modalSub">
+            </p>
+
+            <div
+                class="existing-payments"
+                id="modalExisting">
+            </div>
 
             <form id="modalPayForm">
+
                 <div class="modal-form">
+
                     <div class="field">
-                        <label>পরিমাণ (৳)</label>
-                        <input type="number" id="m_amount" min="0" placeholder="টাকার পরিমাণ">
+
+                        <label>
+                            পরিমাণ (৳)
+                        </label>
+
+                        <input
+                            type="number"
+                            id="m_amount"
+                            min="0"
+                            placeholder="টাকার পরিমাণ">
+
                     </div>
+
                     <div class="field">
-                        <label>তারিখ</label>
-                        <input type="date" id="m_date">
+
+                        <label>
+                            তারিখ
+                        </label>
+
+                        <input
+                            type="date"
+                            id="m_date">
+
                     </div>
+
                 </div>
+
                 <div class="modal-actions">
-                    <button type="submit" class="btn btn-primary">যোগ করুন</button>
-                    <button type="button" class="btn btn-ghost" id="modalCancelBtn">বন্ধ করুন</button>
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary">
+
+                        যোগ করুন
+
+                    </button>
+
+                    <button
+                        type="button"
+                        class="btn btn-alert btn-sm"
+                        id="modalDueAlertBtn">
+
+                        ⚠️ বকেয়া তাগাদা SMS পাঠান
+
+                    </button>
+
+                    <button
+                        type="button"
+                        class="btn btn-ghost"
+                        id="modalCancelBtn">
+
+                        বন্ধ করুন
+
+                    </button>
+
                 </div>
-                <div class="msg modal-msg" id="modalMsg"></div>
+
+                <div
+                    class="sms-status"
+                    id="smsStatus">
+                </div>
+
+                <div
+                    class="msg modal-msg"
+                    id="modalMsg">
+                </div>
+
             </form>
+
         </div>
+
     </div>
 
-    <footer> @copyright-2026 আল হামরা নূরানী মাদ্রাসা, ধানুয়াখালী'র ভর্তি এবং বেতন সংরক্ষণ <br> <span style="font-size: 15px; color: #7506f3;">created by MOBARAK HOSEN</span></footer>
+    <footer>
+
+        @copyright-2026 আল হামরা নূরানী মাদ্রাসা,
+        ধানুয়াখালী'র ভর্তি এবং বেতন সংরক্ষণ
+
+        <br>
+
+        <span style="font-size:15px;color:#7506f3;">
+            created by MOBARAK HOSEN
+        </span>
+
+    </footer>
+
 
     <script>
-        // ---------------- Persistent Storage Engine ----------------
+
+        /* =========================================================
+           STORAGE ENGINE
+        ========================================================= */
+
         (function initStorage() {
+
             let localStorageOk = false;
+
             try {
+
                 const testKey = '__storage_test__';
+
                 localStorage.setItem(testKey, '1');
                 localStorage.removeItem(testKey);
+
                 localStorageOk = true;
+
             } catch (_) {}
 
             const memCache = {};
 
             function getLocalKeys(prefix) {
+
                 const keys = [];
+
                 try {
+
                     for (let i = 0; i < localStorage.length; i++) {
+
                         const key = localStorage.key(i);
-                        if (key && key.startsWith(prefix)) {
+
+                        if (
+                            key &&
+                            key.startsWith(prefix)
+                        ) {
                             keys.push(key);
                         }
+
                     }
+
                 } catch (_) {}
+
                 return keys;
             }
 
             window.storage = {
+
                 get: function(key) {
+
                     if (localStorageOk) {
+
                         try {
-                            const val = localStorage.getItem(key);
+
+                            const val =
+                                localStorage.getItem(key);
+
                             if (val !== null) {
+
                                 memCache[key] = val;
-                                return { value: val };
+
+                                return {
+                                    value: val
+                                };
+
                             }
+
                         } catch (_) {}
+
                     }
-                    if (Object.prototype.hasOwnProperty.call(memCache, key)) {
-                        return { value: memCache[key] };
+
+                    if (
+                        Object.prototype.hasOwnProperty.call(
+                            memCache,
+                            key
+                        )
+                    ) {
+
+                        return {
+                            value: memCache[key]
+                        };
+
                     }
+
                     return null;
                 },
 
                 set: function(key, value) {
+
                     memCache[key] = value;
+
                     if (localStorageOk) {
+
                         try {
-                            localStorage.setItem(key, value);
-                            return { success: true };
+
+                            localStorage.setItem(
+                                key,
+                                value
+                            );
+
+                            return {
+                                success: true
+                            };
+
                         } catch (_) {
+
                             return null;
+
                         }
+
                     }
+
                     return null;
                 },
 
                 delete: function(key) {
+
                     delete memCache[key];
+
                     if (localStorageOk) {
+
                         try {
+
                             localStorage.removeItem(key);
-                            return { success: true };
-                        } catch (_) {
-                            return null;
-                        }
+
+                            return {
+                                success: true
+                            };
+
+                        } catch (_) {}
+
                     }
+
                     return null;
                 },
 
                 list: function(prefix) {
+
                     let keys = [];
+
                     if (localStorageOk) {
                         keys = getLocalKeys(prefix);
                     }
-                    for (const k of Object.keys(memCache)) {
-                        if (k.startsWith(prefix) && !keys.includes(k)) {
+
+                    for (
+                        const k of Object.keys(memCache)
+                    ) {
+
+                        if (
+                            k.startsWith(prefix) &&
+                            !keys.includes(k)
+                        ) {
+
                             keys.push(k);
+
                         }
+
                     }
-                    return { keys: keys };
+
+                    return {
+                        keys: keys
+                    };
+
                 }
+
             };
 
-            window.__storageHealthy = localStorageOk;
+            window.__storageHealthy =
+                localStorageOk;
+
         })();
 
+
+        /* =========================================================
+           GLOBAL STORAGE / FIREBASE
+        ========================================================= */
+
         const SHARED = true;
-        const hasRealStorage = (typeof window.storage === 'object' && window.storage !== null && typeof window.storage.set === 'function');
+
+        const hasRealStorage =
+            (
+                typeof window.storage === 'object' &&
+                window.storage !== null &&
+                typeof window.storage.set === 'function'
+            );
+
         const memStore = {};
 
-        // ---------------------------------------------------------------
-        // FIX #1: Create the firebaseReady promise HERE, synchronously,
-        // BEFORE any code below (including renderStudentsTable /
-        // renderFeeLedger at the bottom of this script) can call
-        // waitForFirebase(). The <script type="module"> block that
-        // actually connects to Firebase runs LATER (module scripts are
-        // deferred), so previously "window.firebaseReady" was still
-        // undefined the first time the page loaded and every read
-        // silently skipped Firebase and returned empty local data.
-        // Clicking a tab again worked only because by then the module
-        // script had already finished and set window.firebaseReady.
-        // By creating the pending Promise up-front and having the
-        // module script resolve it later, every caller (no matter how
-        // early it runs) correctly waits for the real Firebase
-        // connection instead of racing past it.
-        // ---------------------------------------------------------------
-        window.firebaseReady = new Promise((resolve) => {
-            window.__resolveFirebaseReady = resolve;
-        });
+        window.firebaseReady =
+            new Promise((resolve) => {
+
+                window.__resolveFirebaseReady =
+                    resolve;
+
+            });
+
 
         function showStorageBanner() {
-            const banner = document.getElementById('storageBanner');
-            if (banner) banner.classList.add('show');
+
+            const banner =
+                document.getElementById(
+                    'storageBanner'
+                );
+
+            if (banner) {
+                banner.classList.add('show');
+            }
+
         }
+
 
         async function waitForFirebase() {
+
             try {
-                const db = await window.firebaseReady;
-                return db || window.firebaseDb || null;
+
+                const db =
+                    await window.firebaseReady;
+
+                return (
+                    db ||
+                    window.firebaseDb ||
+                    null
+                );
+
             } catch (e) {
+
                 return null;
+
             }
+
         }
 
-        // ---------------- Fast Firebase Cache Engine ----------------
-        // Firebase-এর প্রতিটি key আলাদা আলাদা করে পড়ার বদলে একবারে
-        // madrasaData পুরোটা RAM cache-এ আনা হয়। ফলে পরের সব read প্রায় instant।
+
+        /* =========================================================
+           FIREBASE CACHE
+        ========================================================= */
+
         let firebaseDataCache = null;
         let firebaseDataLoadPromise = null;
 
+
         async function loadFirebaseDataCache(db) {
-            if (firebaseDataCache !== null) return firebaseDataCache;
-            if (firebaseDataLoadPromise) return firebaseDataLoadPromise;
 
-            firebaseDataLoadPromise = (async () => {
-                try {
-                    const snap = await window.firebaseFns.get(window.firebaseFns.ref(db, 'madrasaData'));
-                    firebaseDataCache = snap.exists() ? (snap.val() || {}) : {};
+            if (firebaseDataCache !== null) {
+                return firebaseDataCache;
+            }
 
-                    // RAM cache-এ cloud data বসিয়ে দিচ্ছি।
-                    Object.keys(firebaseDataCache).forEach(key => {
-                        memStore[key] = firebaseDataCache[key];
-                    });
+            if (firebaseDataLoadPromise) {
+                return firebaseDataLoadPromise;
+            }
 
-                    return firebaseDataCache;
-                } catch (e) {
-                    console.warn('Firebase initial data load failed:', e);
-                    firebaseDataCache = {};
-                    return firebaseDataCache;
-                }
-            })();
+            firebaseDataLoadPromise =
+                (async () => {
+
+                    try {
+
+                        const snap =
+                            await window.firebaseFns.get(
+                                window.firebaseFns.ref(
+                                    db,
+                                    'madrasaData'
+                                )
+                            );
+
+                        firebaseDataCache =
+                            snap.exists()
+                                ? (snap.val() || {})
+                                : {};
+
+                        Object.keys(
+                            firebaseDataCache
+                        ).forEach(key => {
+
+                            memStore[key] =
+                                firebaseDataCache[key];
+
+                        });
+
+                        return firebaseDataCache;
+
+                    } catch (e) {
+
+                        console.warn(
+                            'Firebase initial data load failed:',
+                            e
+                        );
+
+                        firebaseDataCache = {};
+
+                        return firebaseDataCache;
+
+                    }
+
+                })();
 
             return firebaseDataLoadPromise;
+
         }
 
+
         async function storeGet(key) {
-            // 1) সবচেয়ে দ্রুত: RAM cache
-            if (Object.prototype.hasOwnProperty.call(memStore, key)) {
+
+            if (
+                Object.prototype.hasOwnProperty.call(
+                    memStore,
+                    key
+                )
+            ) {
+
                 return memStore[key];
+
             }
 
-            // 2) তারপর LocalStorage — Firebase আসার আগেই UI দেখানো যাবে
             if (hasRealStorage) {
+
                 try {
-                    const r = await window.storage.get(key, SHARED);
-                    if (r && r.value !== undefined) {
-                        memStore[key] = r.value;
+
+                    const r =
+                        await window.storage.get(
+                            key,
+                            SHARED
+                        );
+
+                    if (
+                        r &&
+                        r.value !== undefined
+                    ) {
+
+                        memStore[key] =
+                            r.value;
+
                         return r.value;
+
                     }
+
                 } catch (e) {}
+
             }
 
-            // 3) LocalStorage-এ না থাকলে Firebase cache থেকে নিন
-            const db = await waitForFirebase();
-            if (db && window.firebaseFns) {
+            const db =
+                await waitForFirebase();
+
+            if (
+                db &&
+                window.firebaseFns
+            ) {
+
                 try {
-                    const data = await loadFirebaseDataCache(db);
-                    if (Object.prototype.hasOwnProperty.call(data, key)) {
-                        memStore[key] = data[key];
+
+                    const data =
+                        await loadFirebaseDataCache(
+                            db
+                        );
+
+                    if (
+                        Object.prototype.hasOwnProperty.call(
+                            data,
+                            key
+                        )
+                    ) {
+
+                        memStore[key] =
+                            data[key];
+
                         return data[key];
+
                     }
+
                 } catch (e) {
-                    console.warn('Firebase read failed:', e);
+
+                    console.warn(
+                        'Firebase read failed:',
+                        e
+                    );
+
                 }
+
             }
 
             return null;
+
         }
+
 
         async function storeSet(key, value) {
-            // UI সঙ্গে সঙ্গে নতুন data দেখাবে
+
             memStore[key] = value;
-            if (firebaseDataCache !== null) firebaseDataCache[key] = value;
+
+            if (
+                firebaseDataCache !== null
+            ) {
+
+                firebaseDataCache[key] =
+                    value;
+
+            }
 
             let cloudSaved = false;
-            const db = await waitForFirebase();
 
-            if (db && window.firebaseFns) {
+            const db =
+                await waitForFirebase();
+
+            if (
+                db &&
+                window.firebaseFns
+            ) {
+
                 try {
-                    await window.firebaseFns.set(window.firebaseFns.ref(db, 'madrasaData/' + key), value);
+
+                    await window.firebaseFns.set(
+                        window.firebaseFns.ref(
+                            db,
+                            'madrasaData/' + key
+                        ),
+                        value
+                    );
+
                     cloudSaved = true;
+
                 } catch (e) {
-                    console.warn('Firebase write failed:', e);
+
+                    console.warn(
+                        'Firebase write failed:',
+                        e
+                    );
+
                 }
+
             }
 
-            // Cloud save ব্যর্থ হলে local backup রাখুন
-            if (!cloudSaved && hasRealStorage) {
+            if (
+                !cloudSaved &&
+                hasRealStorage
+            ) {
+
                 try {
-                    const r = await window.storage.set(key, value, SHARED);
-                    if (!r) showStorageBanner();
+
+                    const r =
+                        await window.storage.set(
+                            key,
+                            value,
+                            SHARED
+                        );
+
+                    if (!r) {
+                        showStorageBanner();
+                    }
+
                 } catch (e) {
+
                     showStorageBanner();
+
                 }
+
             }
+
             return true;
+
         }
+
 
         async function storeDelete(key) {
-            delete memStore[key];
-            if (firebaseDataCache !== null) delete firebaseDataCache[key];
 
-            const db = await waitForFirebase();
-            if (db && window.firebaseFns) {
+            delete memStore[key];
+
+            if (
+                firebaseDataCache !== null
+            ) {
+
+                delete firebaseDataCache[key];
+
+            }
+
+            const db =
+                await waitForFirebase();
+
+            if (
+                db &&
+                window.firebaseFns
+            ) {
+
                 try {
-                    await window.firebaseFns.remove(window.firebaseFns.ref(db, 'madrasaData/' + key));
+
+                    await window.firebaseFns.remove(
+                        window.firebaseFns.ref(
+                            db,
+                            'madrasaData/' + key
+                        )
+                    );
+
                 } catch (e) {
-                    console.warn('Firebase delete failed:', e);
+
+                    console.warn(
+                        'Firebase delete failed:',
+                        e
+                    );
+
                 }
+
             }
+
             if (hasRealStorage) {
-                try { await window.storage.delete(key, SHARED); } catch (e) {}
+
+                try {
+
+                    await window.storage.delete(
+                        key,
+                        SHARED
+                    );
+
+                } catch (e) {}
+
             }
+
         }
 
+
         async function storeListKeys(prefix) {
+
             const keySet = new Set();
 
-            // Local/RAM থেকে সঙ্গে সঙ্গে keys পাওয়া যাবে
             if (hasRealStorage) {
+
                 try {
-                    const r = await window.storage.list(prefix, SHARED);
-                    (r && r.keys ? r.keys : []).forEach(k => keySet.add(k));
+
+                    const r =
+                        await window.storage.list(
+                            prefix,
+                            SHARED
+                        );
+
+                    (
+                        r && r.keys
+                            ? r.keys
+                            : []
+                    ).forEach(k =>
+                        keySet.add(k)
+                    );
+
                 } catch (e) {
+
                     showStorageBanner();
+
                 }
+
             }
 
-            Object.keys(memStore).forEach(k => {
-                if (k.startsWith(prefix)) keySet.add(k);
+            Object.keys(
+                memStore
+            ).forEach(k => {
+
+                if (k.startsWith(prefix)) {
+                    keySet.add(k);
+                }
+
             });
 
-            // Firebase থেকে root data একবারই load হবে
-            const db = await waitForFirebase();
-            if (db && window.firebaseFns) {
+            const db =
+                await waitForFirebase();
+
+            if (
+                db &&
+                window.firebaseFns
+            ) {
+
                 try {
-                    const data = await loadFirebaseDataCache(db);
-                    Object.keys(data).forEach(k => {
-                        if (k.startsWith(prefix)) keySet.add(k);
-                    });
-                } catch (e) {
-                    console.warn('Firebase list failed:', e);
-                }
+
+                    const data =
+                        await loadFirebaseDataCache(
+                            db
+                        );
+
+                    Object.keys(data)
+                        .forEach(k => {
+
+                            if (
+                                k.startsWith(prefix)
+                            ) {
+
+                                keySet.add(k);
+
+                            }
+
+                        });
+
+                } catch (e) {}
+
             }
 
             return Array.from(keySet);
+
         }
 
 
-        // ---------------- Class-Code Mapping & Storage Handlers ----------------
+        /* =========================================================
+           CLASS / STUDENT STORAGE
+        ========================================================= */
+
         const classCodeMap = {
+
             'শিশু শ্রেণি': 'c0',
             'প্রথম শ্রেণি': 'c1',
             'দ্বিতীয় শ্রেণি': 'c2',
             'তৃতীয় শ্রেণি': 'c3'
+
         };
+
 
         function classCode(className) {
-            return classCodeMap[className] || 'legacy';
+
+            return (
+                classCodeMap[className] ||
+                'legacy'
+            );
+
         }
+
 
         async function saveStudent(student) {
-            return await storeSet(`student:${classCode(student.className)}:${student.roll}`, JSON.stringify(student));
+
+            return await storeSet(
+                `student:${classCode(student.className)}:${student.roll}`,
+                JSON.stringify(student)
+            );
+
         }
 
-        async function getStudent(roll, className) {
-            const raw = await storeGet(`student:${classCode(className)}:${roll}`);
-            if (!raw) return null;
-            try { return JSON.parse(raw); } catch (e) { return null; }
+
+        async function getStudent(
+            roll,
+            className
+        ) {
+
+            const raw =
+                await storeGet(
+                    `student:${classCode(className)}:${roll}`
+                );
+
+            if (!raw) {
+                return null;
+            }
+
+            try {
+
+                return JSON.parse(raw);
+
+            } catch (e) {
+
+                return null;
+
+            }
+
         }
 
-        async function deleteStudentStorage(roll, className) {
-            await storeDelete(`student:${classCode(className)}:${roll}`);
+
+        async function deleteStudentStorage(
+            roll,
+            className
+        ) {
+
+            await storeDelete(
+                `student:${classCode(className)}:${roll}`
+            );
+
         }
+
 
         async function listStudents() {
+
             await migrateLegacyData();
-            const keys = await storeListKeys('student:');
+
+            const keys =
+                await storeListKeys(
+                    'student:'
+                );
+
             const out = [];
+
             for (const k of keys) {
-                const raw = await storeGet(k);
+
+                const raw =
+                    await storeGet(k);
+
                 if (raw) {
-                    try { out.push(JSON.parse(raw)); } catch (e) {}
-                }
-            }
-            out.sort((a, b) => (parseInt(a.roll) || 0) - (parseInt(b.roll) || 0) || String(a.roll).localeCompare(String(b.roll)));
-            return out;
-        }
 
-        async function getFees(roll, className) {
-            const raw = await storeGet(`fee:${classCode(className)}:${roll}`);
-            if (!raw) return [];
-            try { return JSON.parse(raw); } catch (e) { return []; }
-        }
-
-        async function saveFees(roll, className, list) {
-            return await storeSet(`fee:${classCode(className)}:${roll}`, JSON.stringify(list));
-        }
-
-        async function deleteFeesStorage(roll, className) {
-            await storeDelete(`fee:${classCode(className)}:${roll}`);
-        }
-
-        // ---------------------------------------------------------------
-        // FIX #2: migrateLegacyData used a plain boolean flag
-        // (legacyMigrationDone) that was set to true BEFORE the
-        // migration's async work actually finished. Because
-        // renderStudentsTable() and renderFeeLedger() both call
-        // listStudents() -> migrateLegacyData() almost at the same
-        // time on page load, the second call saw the flag already
-        // "true" and returned immediately -- even though the first
-        // migration hadn't finished moving/writing data yet. That
-        // caused storeListKeys('student:') to run against a
-        // half-migrated store and come back empty for the fee ledger.
-        // Now we cache the in-flight PROMISE itself, so every caller
-        // (no matter how early) awaits the same single migration run
-        // to actually complete before continuing.
-        // ---------------------------------------------------------------
-        let legacyMigrationPromise = null;
-        function migrateLegacyData() {
-            if (!legacyMigrationPromise) {
-                legacyMigrationPromise = (async () => {
                     try {
-                        const studentKeys = await storeListKeys('student:');
-                        const rollToCode = {};
-                        for (const key of studentKeys) {
-                            const parts = key.split(':');
-                            if (parts.length !== 2) continue;
-                            const roll = parts[1];
-                            const raw = await storeGet(key);
-                            if (!raw) continue;
-                            let student;
-                            try { student = JSON.parse(raw); } catch (e) { continue; }
-                            const code = classCode(student.className);
-                            const newKey = `student:${code}:${roll}`;
-                            const existing = await storeGet(newKey);
-                            if (!existing) await storeSet(newKey, raw);
-                            await storeDelete(key);
-                            rollToCode[roll] = code;
-                        }
-                        const feeKeys = await storeListKeys('fee:');
-                        for (const key of feeKeys) {
-                            const parts = key.split(':');
-                            if (parts.length !== 2) continue;
-                            const roll = parts[1];
-                            const raw = await storeGet(key);
-                            if (!raw) continue;
-                            const code = rollToCode[roll] || 'legacy';
-                            const newKey = `fee:${code}:${roll}`;
-                            const existing = await storeGet(newKey);
-                            if (!existing) await storeSet(newKey, raw);
-                            await storeDelete(key);
-                        }
+
+                        out.push(
+                            JSON.parse(raw)
+                        );
+
                     } catch (e) {}
-                })();
-            }
-            return legacyMigrationPromise;
-        }
 
-        // ---------------- Helpers & Formatting ----------------
-        const banglaDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
-
-        function toBn(num) {
-            return String(num ?? '').replace(/[0-9]/g, d => banglaDigits[d]);
-        }
-
-        function fmtTaka(n) {
-            const v = Number(n) || 0;
-            return '৳' + toBn(v.toLocaleString('en-IN'));
-        }
-
-        const bnMonths = ['জানুয়ারি', 'ফেব্রুয়ারি', 'মার্চ', 'এপ্রিল', 'মে', 'জুন', 'জুলাই', 'আগস্ট', 'সেপ্টেম্বর', 'অক্টোবর', 'নভেম্বর', 'ডিসেম্বর'];
-        const bnMonthsShort = ['জানু', 'ফেব্রু', 'মার্চ', 'এপ্রিল', 'মে', 'জুন', 'জুলাই', 'আগস্ট', 'সেপ্টে', 'অক্টো', 'নভে', 'ডিসে'];
-
-        function escapeHtml(s) {
-            return String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-        }
-
-        // ---------------- Tab Management ----------------
-        document.querySelectorAll('.tab-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-                document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-                btn.classList.add('active');
-                document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
-                if (btn.dataset.tab === 'students') renderStudentsTable();
-                if (btn.dataset.tab === 'fees') renderFeeLedger();
-            });
-        });
-
-        // ---------------- Admission Module ----------------
-        const admissionForm = document.getElementById('admissionForm');
-        const admMsg = document.getElementById('admMsg');
-
-        function showMsg(el, text, ok = true) {
-            el.textContent = text;
-            el.className = 'msg show ' + (ok ? 'ok' : 'err');
-            setTimeout(() => { el.classList.remove('show'); }, 3500);
-        }
-
-        function clearAdmissionForm() {
-            admissionForm.reset();
-            document.getElementById('editingRoll').value = '';
-            document.getElementById('editingClass').value = '';
-            document.getElementById('admFormTitle').textContent = 'নতুন ভর্তি ফরম';
-            document.getElementById('submitBtn').textContent = 'ভর্তি ফরম সংরক্ষণ করুন';
-            document.getElementById('f_date').valueAsDate = new Date();
-        }
-        document.getElementById('clearFormBtn').addEventListener('click', clearAdmissionForm);
-
-        admissionForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const roll = document.getElementById('f_roll').value.trim();
-            const editingRoll = document.getElementById('editingRoll').value.trim();
-            const editingClass = document.getElementById('editingClass').value;
-
-            if (!roll) { showMsg(admMsg, 'রোল নম্বর আবশ্যক।', false); return; }
-
-            const className = document.getElementById('f_class').value;
-            if (!className) { showMsg(admMsg, 'শ্রেণি বাছাই করুন।', false); return; }
-
-            const isEditing = !!editingRoll;
-            const keyChanged = !isEditing || editingRoll !== roll || editingClass !== className;
-
-            if (keyChanged) {
-                const existing = await getStudent(roll, className);
-                if (existing) {
-                    showMsg(admMsg, className + '-এ রোল নম্বর ' + toBn(roll) + ' ইতিমধ্যে ব্যবহৃত হয়েছে (' + escapeHtml(existing.name) + ')। ভিন্ন রোল দিন।', false);
-                    return;
                 }
+
             }
 
-            const student = {
-                roll: roll,
-                name: document.getElementById('f_name').value.trim(),
-                father: document.getElementById('f_father').value.trim(),
-                className: className,
-                village: document.getElementById('f_village').value.trim(),
-                upazila: document.getElementById('f_upazila').value.trim(),
-                district: document.getElementById('f_district').value.trim(),
-                guardian: document.getElementById('f_guardian').value.trim(),
-                mobile: document.getElementById('f_mobile').value.trim(),
-                monthlyFee: document.getElementById('f_fee').value ? Number(document.getElementById('f_fee').value) : 0,
-                admissionDate: document.getElementById('f_date').value || '',
-                updatedAt: new Date().toISOString()
-            };
+            out.sort(
+                (a, b) =>
+                    (
+                        parseInt(a.roll) || 0
+                    ) -
+                    (
+                        parseInt(b.roll) || 0
+                    ) ||
+                    String(a.roll)
+                        .localeCompare(
+                            String(b.roll)
+                        )
+            );
 
-            const submitBtn = document.getElementById('submitBtn');
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'সংরক্ষণ হচ্ছে...';
+            return out;
+
+        }
+
+
+        async function getFees(
+            roll,
+            className
+        ) {
+
+            const raw =
+                await storeGet(
+                    `fee:${classCode(className)}:${roll}`
+                );
+
+            if (!raw) {
+                return [];
+            }
 
             try {
-                if (isEditing && keyChanged) {
-                    const oldFees = await getFees(editingRoll, editingClass);
-                    await deleteStudentStorage(editingRoll, editingClass);
-                    await deleteFeesStorage(editingRoll, editingClass);
-                    if (oldFees.length) {
-                        await saveFees(roll, className, oldFees);
-                    }
-                }
 
-                const result = await saveStudent(student);
-                if (result) {
-                    showMsg(admMsg, isEditing ? 'তথ্য হালনাগাদ করা হয়েছে।' : 'ভর্তি ফরম সফলভাবে সংরক্ষণ করা হয়েছে।', true);
-                    clearAdmissionForm();
-                    renderStudentsTable();
-                    refreshFeesTabData();
-                } else {
-                    showMsg(admMsg, 'সংরক্ষণ ব্যর্থ হয়েছে।', false);
-                }
-            } catch (err) {
-                showMsg(admMsg, 'ত্রুটি: ' + (err.message || 'অজানা ত্রুটি'), false);
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.textContent = isEditing ? 'হালনাগাদ সংরক্ষণ করুন' : 'ভর্তি ফরম সংরক্ষণ করুন';
+                return JSON.parse(raw);
+
+            } catch (e) {
+
+                return [];
+
             }
-        });
 
-        function loadStudentIntoForm(s) {
-            document.getElementById('editingRoll').value = s.roll;
-            document.getElementById('editingClass').value = s.className || '';
-            document.getElementById('f_name').value = s.name || '';
-            document.getElementById('f_father').value = s.father || '';
-            document.getElementById('f_roll').value = s.roll || '';
-            document.getElementById('f_class').value = s.className || '';
-            document.getElementById('f_fee').value = s.monthlyFee || '';
-            document.getElementById('f_village').value = s.village || '';
-            document.getElementById('f_upazila').value = s.upazila || '';
-            document.getElementById('f_district').value = s.district || '';
-            document.getElementById('f_guardian').value = s.guardian || '';
-            document.getElementById('f_mobile').value = s.mobile || '';
-            document.getElementById('f_date').value = s.admissionDate || '';
-            document.getElementById('admFormTitle').textContent = 'তথ্য সম্পাদনা করুন — রোল ' + toBn(s.roll);
-            document.getElementById('submitBtn').textContent = 'হালনাগাদ সংরক্ষণ করুন';
-            document.querySelector('.tab-btn[data-tab="admission"]').click();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // ---------------- Students Table Module ----------------
-        let allStudentsCache = [];
-        let selectedStudentClass = null;
 
-        async function renderStudentsTable() {
-            allStudentsCache = await listStudents();
-            renderStudentClassCards();
-            if (selectedStudentClass) {
-                applyStudentClassFilter();
+        async function saveFees(
+            roll,
+            className,
+            list
+        ) {
+
+            return await storeSet(
+                `fee:${classCode(className)}:${roll}`,
+                JSON.stringify(list)
+            );
+
+        }
+
+
+        async function deleteFeesStorage(
+            roll,
+            className
+        ) {
+
+            await storeDelete(
+                `fee:${classCode(className)}:${roll}`
+            );
+
+        }
+
+
+        let legacyMigrationPromise = null;
+
+
+        function migrateLegacyData() {
+
+            if (!legacyMigrationPromise) {
+
+                legacyMigrationPromise =
+                    (async () => {
+
+                        try {
+
+                            const studentKeys =
+                                await storeListKeys(
+                                    'student:'
+                                );
+
+                            const rollToCode = {};
+
+                            for (
+                                const key of studentKeys
+                            ) {
+
+                                const parts =
+                                    key.split(':');
+
+                                if (
+                                    parts.length !== 2
+                                ) {
+                                    continue;
+                                }
+
+                                const roll =
+                                    parts[1];
+
+                                const raw =
+                                    await storeGet(
+                                        key
+                                    );
+
+                                if (!raw) {
+                                    continue;
+                                }
+
+                                let student;
+
+                                try {
+
+                                    student =
+                                        JSON.parse(raw);
+
+                                } catch (e) {
+
+                                    continue;
+
+                                }
+
+                                const code =
+                                    classCode(
+                                        student.className
+                                    );
+
+                                const newKey =
+                                    `student:${code}:${roll}`;
+
+                                const existing =
+                                    await storeGet(
+                                        newKey
+                                    );
+
+                                if (!existing) {
+
+                                    await storeSet(
+                                        newKey,
+                                        raw
+                                    );
+
+                                }
+
+                                await storeDelete(
+                                    key
+                                );
+
+                                rollToCode[roll] =
+                                    code;
+
+                            }
+
+
+                            const feeKeys =
+                                await storeListKeys(
+                                    'fee:'
+                                );
+
+                            for (
+                                const key of feeKeys
+                            ) {
+
+                                const parts =
+                                    key.split(':');
+
+                                if (
+                                    parts.length !== 2
+                                ) {
+                                    continue;
+                                }
+
+                                const roll =
+                                    parts[1];
+
+                                const raw =
+                                    await storeGet(
+                                        key
+                                    );
+
+                                if (!raw) {
+                                    continue;
+                                }
+
+                                const code =
+                                    rollToCode[roll] ||
+                                    'legacy';
+
+                                const newKey =
+                                    `fee:${code}:${roll}`;
+
+                                const existing =
+                                    await storeGet(
+                                        newKey
+                                    );
+
+                                if (!existing) {
+
+                                    await storeSet(
+                                        newKey,
+                                        raw
+                                    );
+
+                                }
+
+                                await storeDelete(
+                                    key
+                                );
+
+                            }
+
+                        } catch (e) {}
+
+                    })();
+
             }
+
+            return legacyMigrationPromise;
+
         }
 
-        function renderStudentClassCards() {
-            const wrap = document.getElementById('studentClassSelector');
-            wrap.innerHTML = classDefs.map(c => {
-                const count = allStudentsCache.filter(s => s.className === c.key).length;
-                const activeCls = selectedStudentClass === c.key ? 'active' : '';
-                return `
-                  <div class="class-card ${activeCls}" onclick="selectStudentClass('${escapeHtml(c.key)}')">
-                    <span class="cls-icon-wrap">${classIconSvg}<span class="cls-badge">${c.badge}</span></span>
-                    <span class="cls-label">${c.key}</span>
-                    <span class="cls-count">${toBn(count)} জন শিক্ষার্থী</span>
-                  </div>`;
-            }).join('');
-        }
 
-        window.selectStudentClass = function(key) {
-            selectedStudentClass = key;
-            document.getElementById('studentsTopSub').textContent = key + ' এর শিক্ষার্থী তালিকা — রোল, নাম বা অভিভাবকের নাম দিয়ে খুঁজুন।';
-            renderStudentClassCards();
-            document.getElementById('studentsListArea').style.display = 'block';
-            applyStudentClassFilter();
-            document.getElementById('studentsListArea').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        };
+        /* =========================================================
+           HELPERS
+        ========================================================= */
 
-        function applyStudentClassFilter() {
-            const q = document.getElementById('studentSearch').value.trim().toLowerCase();
-            let list = allStudentsCache.filter(s => s.className === selectedStudentClass);
-            if (q) {
-                list = list.filter(s =>
-                    String(s.roll).toLowerCase().includes(q) ||
-                    (s.name || '').toLowerCase().includes(q) ||
-                    (s.mobile || '').toLowerCase().includes(q) ||
-                    (s.guardian || '').toLowerCase().includes(q)
-                );
-            }
-            drawStudentsTable(list);
-        }
-
-        function drawStudentsTable(list) {
-            const wrap = document.getElementById('studentsTableWrap');
-            if (!list.length) {
-                wrap.innerHTML = `<div class="empty-state">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20c0-4 3.5-6 8-6s8 2 8 6M12 12a4 4 0 100-8 4 4 0 000 8z"/></svg>
-              <div>এখনো কোনো শিক্ষার্থী ভর্তি করা হয়নি।</div>
-            </div>`;
-                return;
-            }
-            let rows = list.map(s => `
-                <tr>
-                  <td><span class="roll-chip">${escapeHtml(toBn(s.roll))}</span></td>
-                  <td>${escapeHtml(s.name)}</td>
-                  <td>${escapeHtml(s.className || '-')}</td>
-                  <td>${escapeHtml(s.father)}</td>
-                  <td>${escapeHtml(s.village)}, ${escapeHtml(s.upazila)}</td>
-                  <td>${escapeHtml(s.guardian)}</td>
-                  <td>${escapeHtml(s.mobile)}</td>
-                  <td>
-                    <div class="table-actions">
-                      <button class="btn btn-ghost btn-sm" onclick="editStudentByRoll('${escapeHtml(s.roll)}','${escapeHtml(s.className || '')}')">সম্পাদনা</button>
-                      <button class="btn btn-danger btn-sm" onclick="removeStudent('${escapeHtml(s.roll)}','${escapeHtml(s.className || '')}')">মুছুন</button>
-                    </div>
-                  </td>
-                </tr>
-              `).join('');
-
-            wrap.innerHTML = `
-                <table>
-                  <colgroup>
-                    <col class="col-roll">
-                    <col class="col-name">
-                    <col class="col-class">
-                    <col class="col-father">
-                    <col class="col-addr">
-                    <col class="col-guard">
-                    <col class="col-mobile">
-                    <col class="col-action">
-                  </colgroup>
-                  <thead>
-                    <tr>
-                      <th>রোল</th><th>নাম</th><th>শ্রেণি</th><th>পিতার নাম</th><th>ঠিকানা</th><th>অভিভাবক</th><th>মোবাইল</th><th>কার্যক্রম</th>
-                    </tr>
-                  </thead>
-                  <tbody>${rows}</tbody>
-                </table>
-              `;
-        }
-
-        document.getElementById('studentSearch').addEventListener('input', () => {
-            if (!selectedStudentClass) return;
-            applyStudentClassFilter();
-        });
-
-        window.editStudentByRoll = async function(roll, className) {
-            const s = await getStudent(roll, className);
-            if (s) loadStudentIntoForm(s);
-        };
-
-        window.removeStudent = async function(roll, className) {
-            if (!confirm('আপনি কি নিশ্চিত এই শিক্ষার্থীর তথ্য ও বেতনের রেকর্ড মুছে ফেলতে চান?')) return;
-            await deleteStudentStorage(roll, className);
-            await deleteFeesStorage(roll, className);
-            renderStudentsTable();
-            refreshFeesTabData();
-        };
-
-        // ---------------- Fee Register Engine ----------------
-        const classDefs = [
-            { key: 'শিশু শ্রেণি', badge: '০' },
-            { key: 'প্রথম শ্রেণি', badge: '১' },
-            { key: 'দ্বিতীয় শ্রেণি', badge: '২' },
-            { key: 'তৃতীয় শ্রেণি', badge: '৩' }
+        const banglaDigits = [
+            '০',
+            '১',
+            '২',
+            '৩',
+            '৪',
+            '৫',
+            '৬',
+            '৭',
+            '৮',
+            '৯'
         ];
 
-        let ledgerYear = new Date().getFullYear();
-        let allStudentsFull = [];
-        let selectedClass = null;
-        let ledgerStudents = [];
-        let ledgerFeesByRoll = {};
-        let ledgerSearchTerm = '';
-        let currentSettleTs = 0;
 
-        document.getElementById('yearLabel').textContent = toBn(ledgerYear);
+        function toBn(num) {
 
-        document.getElementById('yearPrev').addEventListener('click', () => {
-            ledgerYear -= 1;
-            document.getElementById('yearLabel').textContent = toBn(ledgerYear);
-            drawLedgerTable();
-        });
-        document.getElementById('yearNext').addEventListener('click', () => {
-            ledgerYear += 1;
-            document.getElementById('yearLabel').textContent = toBn(ledgerYear);
-            drawLedgerTable();
-        });
-        document.getElementById('ledgerSearch').addEventListener('input', (e) => {
-            ledgerSearchTerm = e.target.value.trim().toLowerCase();
-            drawLedgerTable();
-        });
+            return String(
+                num ?? ''
+            ).replace(
+                /[0-9]/g,
+                d => banglaDigits[d]
+            );
 
-        const classIconSvg = `<svg class="cls-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5V6.2c0-.9.7-1.6 1.6-1.7C7.6 4.3 10 4.6 12 6c2-1.4 4.4-1.7 6.4-1.5.9.1 1.6.8 1.6 1.7v13.3"/><path d="M4 19.5c1.9-.7 4.6-.9 6.4-.5.6.1 1.2.4 1.6.7"/><path d="M20 19.5c-1.9-.7-4.6-.9-6.4-.5-.6.1-1.2.4-1.6.7"/><path d="M12 6v13.7"/></svg>`;
-
-        function renderClassCards() {
-            const wrap = document.getElementById('classSelector');
-            wrap.innerHTML = classDefs.map(c => {
-                const count = allStudentsFull.filter(s => s.className === c.key).length;
-                const activeCls = selectedClass === c.key ? 'active' : '';
-                return `
-                  <div class="class-card ${activeCls}" onclick="selectClass('${escapeHtml(c.key)}')">
-                    <span class="cls-icon-wrap">${classIconSvg}<span class="cls-badge">${c.badge}</span></span>
-                    <span class="cls-label">${c.key}</span>
-                    <span class="cls-count">${toBn(count)} জন শিক্ষার্থী</span>
-                  </div>`;
-            }).join('');
         }
 
-        window.selectClass = async function(key) {
-            selectedClass = key;
-            document.getElementById('feeTopSub').textContent = key + ' এর বেতন খাতা — যেকোনো মাসের ঘরে ক্লিক করে বেতন যোগ করুন।';
-            renderClassCards();
-            document.getElementById('ledgerArea').style.display = 'block';
-            await loadClassLedger(key);
-            document.getElementById('ledgerArea').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        };
 
-        async function loadClassLedger(key) {
-            const wrap = document.getElementById('ledgerWrap');
-            wrap.innerHTML = '<div class="loading">বেতন খাতা লোড হচ্ছে...</div>';
-            document.getElementById('yearLabel').textContent = toBn(ledgerYear);
-            ledgerStudents = allStudentsFull.filter(s => s.className === key);
-            ledgerFeesByRoll = {};
-            for (const s of ledgerStudents) {
-                ledgerFeesByRoll[s.roll] = await getFees(s.roll, s.className);
+        function fmtTaka(n) {
+
+            const v =
+                Number(n) || 0;
+
+            return (
+                '৳' +
+                toBn(
+                    v.toLocaleString('en-IN')
+                )
+            );
+
+        }
+
+
+        const bnMonths = [
+            'জানুয়ারি',
+            'ফেব্রুয়ারি',
+            'মার্চ',
+            'এপ্রিল',
+            'মে',
+            'জুন',
+            'জুলাই',
+            'আগস্ট',
+            'সেপ্টেম্বর',
+            'অক্টোবর',
+            'নভেম্বর',
+            'ডিসেম্বর'
+        ];
+
+
+        const bnMonthsShort = [
+            'জানু',
+            'ফেব্রু',
+            'মার্চ',
+            'এপ্রিল',
+            'মে',
+            'জুন',
+            'জুলাই',
+            'আগস্ট',
+            'সেপ্টে',
+            'অক্টো',
+            'নভে',
+            'ডিসে'
+        ];
+
+
+        function escapeHtml(s) {
+
+            return String(
+                s ?? ''
+            ).replace(
+                /[&<>"']/g,
+                c => ({
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    '"': '&quot;',
+                    "'": '&#39;'
+                }[c])
+            );
+
+        }
+
+
+        /* =========================================================
+           TEXTBEE SMS CONFIGURATION
+           
+           IMPORTANT:
+           1. নতুন API KEY বসাও
+           2. Device ID বসাও
+           ========================================================= */
+
+        const SMS_API_URL =
+            "https://api.textbee.dev/api/v1/gateway/send-sms";
+
+        const SMS_API_KEY =
+            "txb_L1p1NDAdZjv1lCFbPEEkMyDPnzKMrQf6";
+
+        const SMS_DEVICE_ID =
+            "6a876163300559904608b7b6";
+
+
+        /* =========================================================
+           MOBILE NUMBER NORMALIZER
+           
+           বাংলাদেশ:
+           017xxxxxxxx
+           ০১৭xxxxxxxx
+           +88017xxxxxxxx
+           88017xxxxxxxx
+           
+           সবশেষে:
+           +88017xxxxxxxx
+           ========================================================= */
+
+        function normalizeMobile(input) {
+
+            if (!input) {
+                return '';
             }
-            currentSettleTs = await getSettleTimestamp(key);
-            updateSettleDisplay();
-            drawLedgerTable();
-        }
 
-        async function getSettleTimestamp(className) {
-            const raw = await storeGet('settle:' + classCode(className));
-            if (!raw) return 0;
-            try { return Number(JSON.parse(raw).timestamp) || 0; } catch (e) { return 0; }
-        }
+            const bnToEnDigits = {
 
-        async function setSettleTimestamp(className, ts) {
-            return await storeSet('settle:' + classCode(className), JSON.stringify({ timestamp: ts }));
-        }
+                '০': '0',
+                '১': '1',
+                '২': '2',
+                '৩': '3',
+                '৪': '4',
+                '৫': '5',
+                '৬': '6',
+                '৭': '7',
+                '৮': '8',
+                '৯': '9'
 
-        function computeRunningTotal() {
-            let total = 0;
-            for (const roll in ledgerFeesByRoll) {
-                const list = ledgerFeesByRoll[roll] || [];
-                for (const f of list) {
-                    if (Number(f.id) > currentSettleTs) total += Number(f.amount) || 0;
-                }
-            }
-            return total;
-        }
+            };
 
-        function updateSettleDisplay() {
-            const el = document.getElementById('settleAmt');
-            if (el) el.textContent = fmtTaka(computeRunningTotal());
-        }
+            let s =
+                String(input)
+                    .trim();
 
-        document.getElementById('settleBtn').addEventListener('click', async () => {
-            if (!selectedClass) return;
-            if (!confirm('এখন পর্যন্ত হিসাব সম্পন্ন ধরা হবে এবং কাউন্টার শূন্য হয়ে যাবে। এগিয়ে যাবেন?')) return;
-            const btn = document.getElementById('settleBtn');
-            btn.disabled = true;
-            try {
-                const ts = Date.now();
-                await setSettleTimestamp(selectedClass, ts);
-                currentSettleTs = ts;
-                updateSettleDisplay();
-                showMsg(document.getElementById('feeMsg'), 'হিসাব সম্পন্ন ধরা হয়েছে।', true);
-            } catch (err) {
-                showMsg(document.getElementById('feeMsg'), 'ত্রুটি ঘটেছে।', false);
-            } finally {
-                btn.disabled = false;
-            }
-        });
-
-        async function refreshFeesTabData() {
-            allStudentsFull = await listStudents();
-            renderClassCards();
-            if (selectedClass) {
-                await loadClassLedger(selectedClass);
-            }
-        }
-
-        async function renderFeeLedger() {
-            await refreshFeesTabData();
-        }
-
-        function monthAmount(roll, monthIdx, year) {
-            const list = ledgerFeesByRoll[roll] || [];
-            return list
-                .filter(f => f.month === bnMonths[monthIdx] && Number(f.year) === Number(year))
-                .reduce((sum, f) => sum + (Number(f.amount) || 0), 0);
-        }
-
-        function drawLedgerTable() {
-            const wrap = document.getElementById('ledgerWrap');
-
-            let students = ledgerStudents;
-            if (ledgerSearchTerm) {
-                students = students.filter(s =>
-                    String(s.roll).toLowerCase().includes(ledgerSearchTerm) ||
-                    (s.name || '').toLowerCase().includes(ledgerSearchTerm) ||
-                    (s.father || '').toLowerCase().includes(ledgerSearchTerm)
+            s =
+                s.replace(
+                    /[০-৯]/g,
+                    d => bnToEnDigits[d]
                 );
+
+            s =
+                s.replace(
+                    /[\s\-.()]+/g,
+                    ''
+                );
+
+            s =
+                s.replace(
+                    /[^0-9+]/g,
+                    ''
+                );
+
+
+            /* +88017XXXXXXXX */
+
+            if (
+                s.startsWith('+880')
+            ) {
+
+                if (
+                    /^(\+8801[3-9]\d{8})$/.test(s)
+                ) {
+
+                    return s;
+
+                }
+
+                return '';
+
             }
 
-            if (!students.length) {
-                wrap.innerHTML = `<div class="empty-state">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20c0-4 3.5-6 8-6s8 2 8 6M12 12a4 4 0 100-8 4 4 0 000 8z"/></svg>
-                  <div>${ledgerSearchTerm ? 'কোনো মিল পাওয়া যায়নি।' : 'এখনো কোনো শিক্ষার্থী ভর্তি করা হয়নি। প্রথমে ভর্তি ফরম পূরণ করুন।'}</div>
-                </div>`;
+
+            /* 88017XXXXXXXX */
+
+            if (
+                s.startsWith('880')
+            ) {
+
+                const local =
+                    s.substring(3);
+
+                if (
+                    /^01[3-9]\d{8}$/.test(
+                        local
+                    )
+                ) {
+
+                    return '+880' +
+                        local.substring(1);
+
+                }
+
+                return '';
+
+            }
+
+
+            /* 017XXXXXXXX */
+
+            if (
+                /^01[3-9]\d{8}$/.test(s)
+            ) {
+
+                return '+880' +
+                    s.substring(1);
+
+            }
+
+
+            return '';
+
+        }
+
+
+        function fmtAmountPlain(n) {
+
+            const v =
+                Number(n) || 0;
+
+            return v.toLocaleString(
+                'en-IN'
+            );
+
+        }
+
+
+        function buildPaidSmsMessage(
+            studentName,
+            month,
+            amount
+        ) {
+
+            return (
+  ` আল হামরা নূরানী মাদ্রাসা, ধানুয়াখালী
+    শিক্ষার্থী: ${studentName}
+    মাস: ${month}
+    বেতন: ${fmtAmountPlain(amount)} টাকা       
+  ${month} মাসের বেতন পরিশোধ করা হয়েছে।
+                   ধন্যবাদ`
+            );
+
+        }
+
+
+        function buildDueSmsMessage(
+            studentName,
+            month,
+            amount
+        ) {
+
+            return (
+                ` আল হামরা নূরানী মাদ্রাসা, ধানুয়াখালী
+ শিক্ষার্থী: ${studentName}
+ মাস: ${month}
+ বকেয়া বেতন: ${fmtAmountPlain(amount)} টাকা
+${month} মাসের বেতন এখনও বকেয়া রয়েছে।
+ দয়া করে দ্রুত বেতন পরিশোধ করুন।
+                       ধন্যবাদ`
+            );
+
+        }
+
+
+        /* =========================================================
+           TEXTBEE SEND SMS
+           
+           Correct API:
+           x-api-key
+           recipients: []
+           message
+           deviceId
+
+           NOTE: একটা in-flight guard যোগ করা হয়েছে (__smsInFlight)
+           যাতে দ্রুত একাধিকবার ট্যাপ/কল হলে একসাথে একাধিক SMS
+           রিকোয়েস্ট না চলে যায়। বাকি পুরো লজিক অপরিবর্তিত।
+        ========================================================= */
+
+        let __smsInFlight = false;
+
+
+        async function sendSms(
+            mobileRaw,
+            message
+        ) {
+
+            if (__smsInFlight) {
+
+                return {
+                    success: false,
+                    error:
+                        'একটি SMS ইতিমধ্যে পাঠানো হচ্ছে, একটু অপেক্ষা করুন।'
+                };
+
+            }
+
+            __smsInFlight = true;
+
+            try {
+
+                const mobile =
+                    normalizeMobile(
+                        mobileRaw
+                    );
+
+
+                if (!mobile) {
+
+                    return {
+                        success: false,
+                        error:
+                            'মোবাইল নম্বর সঠিক নয়। উদাহরণ: 01712345678'
+                    };
+
+                }
+
+
+                if (
+                    !SMS_API_KEY ||
+                    SMS_API_KEY ===
+                        "YOUR_NEW_TEXTBEE_API_KEY"
+                ) {
+
+                    return {
+                        success: false,
+                        error:
+                            'TextBee API Key বসানো হয়নি।'
+                    };
+
+                }
+
+
+                if (
+                    !SMS_DEVICE_ID ||
+                    SMS_DEVICE_ID ===
+                        "YOUR_DEVICE_ID"
+                ) {
+
+                    return {
+                        success: false,
+                        error:
+                            'TextBee Device ID বসানো হয়নি।'
+                    };
+
+                }
+
+
+                try {
+
+                    const response =
+                        await fetch(
+                            SMS_API_URL,
+                            {
+
+                                method: 'POST',
+
+                                headers: {
+
+                                    'Content-Type':
+                                        'application/json',
+
+                                    'x-api-key':
+                                        SMS_API_KEY
+
+                                },
+
+                                body:
+                                    JSON.stringify({
+
+                                        recipients: [
+                                            mobile
+                                        ],
+
+                                        message:
+                                            message,
+
+                                        deviceId:
+                                            SMS_DEVICE_ID
+
+                                    })
+
+                            }
+                        );
+
+
+                    let data = {};
+
+                    try {
+
+                        data =
+                            await response.json();
+
+                    } catch (e) {}
+
+
+                    if (!response.ok) {
+
+                        let errorMessage =
+                            'HTTP ' +
+                            response.status;
+
+
+                        if (
+                            data &&
+                            data.message
+                        ) {
+
+                            errorMessage =
+                                data.message;
+
+                        } else if (
+                            data &&
+                            data.error
+                        ) {
+
+                            errorMessage =
+                                typeof data.error ===
+                                'string'
+                                    ? data.error
+                                    : JSON.stringify(
+                                        data.error
+                                    );
+
+                        }
+
+
+                        return {
+
+                            success: false,
+
+                            error:
+                                errorMessage
+
+                        };
+
+                    }
+
+
+                    return {
+
+                        success: true,
+
+                        data: data
+
+                    };
+
+
+                } catch (err) {
+
+                    console.error(
+                        'TextBee SMS error:',
+                        err
+                    );
+
+                    return {
+
+                        success: false,
+
+                        error:
+                            err.message ||
+                            'নেটওয়ার্ক/CORS সমস্যা হয়েছে।'
+
+                    };
+
+                }
+
+            } finally {
+
+                __smsInFlight = false;
+
+            }
+
+        }
+
+
+        function showSmsStatus(
+            text,
+            ok
+        ) {
+
+            const el =
+                document.getElementById(
+                    'smsStatus'
+                );
+
+            if (!el) {
                 return;
             }
 
-            const monthTotals = new Array(12).fill(0);
-            let grandTotal = 0;
+            el.textContent =
+                text;
 
-            const bodyRows = students.map(s => {
-                let rowTotal = 0;
-                const cells = bnMonths.map((mName, idx) => {
-                    const amt = monthAmount(s.roll, idx, ledgerYear);
-                    monthTotals[idx] += amt;
-                    rowTotal += amt;
-                    const cellContent = amt > 0 ?
-                        `<span class="paid-amt">${fmtTaka(amt)}</span>` :
-                        `<span class="unpaid-dash">—</span>`;
-                    return `<td class="month-cell" onclick="openMonthModal('${escapeHtml(s.roll)}', ${idx}, ${ledgerYear})">${cellContent}</td>`;
+            el.style.color =
+                ok
+                    ? 'var(--green-deep)'
+                    : 'var(--red)';
+
+        }
+
+
+        /* =========================================================
+           TAB MANAGEMENT
+        ========================================================= */
+
+        document
+            .querySelectorAll('.tab-btn')
+            .forEach(btn => {
+
+                btn.addEventListener(
+                    'click',
+                    () => {
+
+                        document
+                            .querySelectorAll(
+                                '.tab-btn'
+                            )
+                            .forEach(
+                                b =>
+                                    b.classList.remove(
+                                        'active'
+                                    )
+                            );
+
+                        document
+                            .querySelectorAll(
+                                '.panel'
+                            )
+                            .forEach(
+                                p =>
+                                    p.classList.remove(
+                                        'active'
+                                    )
+                            );
+
+                        btn.classList.add(
+                            'active'
+                        );
+
+                        document
+                            .getElementById(
+                                'panel-' +
+                                btn.dataset.tab
+                            )
+                            .classList.add(
+                                'active'
+                            );
+
+
+                        if (
+                            btn.dataset.tab ===
+                            'students'
+                        ) {
+
+                            renderStudentsTable();
+
+                        }
+
+
+                        if (
+                            btn.dataset.tab ===
+                            'fees'
+                        ) {
+
+                            renderFeeLedger();
+
+                        }
+
+                    }
+                );
+
+            });
+
+
+        /* =========================================================
+           MESSAGE
+        ========================================================= */
+
+        function showMsg(
+            el,
+            text,
+            ok = true
+        ) {
+
+            el.textContent =
+                text;
+
+            el.className =
+                'msg show ' +
+                (
+                    ok
+                        ? 'ok'
+                        : 'err'
+                );
+
+            setTimeout(
+                () => {
+
+                    el.classList.remove(
+                        'show'
+                    );
+
+                },
+                3500
+            );
+
+        }
+
+
+        /* =========================================================
+           ADMISSION
+        ========================================================= */
+
+        const admissionForm =
+            document.getElementById(
+                'admissionForm'
+            );
+
+        const admMsg =
+            document.getElementById(
+                'admMsg'
+            );
+
+
+        function clearAdmissionForm() {
+
+            admissionForm.reset();
+
+            document.getElementById(
+                'editingRoll'
+            ).value = '';
+
+            document.getElementById(
+                'editingClass'
+            ).value = '';
+
+            document.getElementById(
+                'admFormTitle'
+            ).textContent =
+                'নতুন ভর্তি ফরম';
+
+            document.getElementById(
+                'submitBtn'
+            ).textContent =
+                'ভর্তি ফরম সংরক্ষণ করুন';
+
+            document.getElementById(
+                'f_date'
+            ).valueAsDate =
+                new Date();
+
+        }
+
+
+        document
+            .getElementById(
+                'clearFormBtn'
+            )
+            .addEventListener(
+                'click',
+                clearAdmissionForm
+            );
+
+
+        admissionForm.addEventListener(
+            'submit',
+            async e => {
+
+                e.preventDefault();
+
+
+                const roll =
+                    document
+                        .getElementById(
+                            'f_roll'
+                        )
+                        .value
+                        .trim();
+
+
+                const editingRoll =
+                    document
+                        .getElementById(
+                            'editingRoll'
+                        )
+                        .value
+                        .trim();
+
+
+                const editingClass =
+                    document
+                        .getElementById(
+                            'editingClass'
+                        )
+                        .value;
+
+
+                if (!roll) {
+
+                    showMsg(
+                        admMsg,
+                        'রোল নম্বর আবশ্যক।',
+                        false
+                    );
+
+                    return;
+
+                }
+
+
+                const className =
+                    document
+                        .getElementById(
+                            'f_class'
+                        )
+                        .value;
+
+
+                if (!className) {
+
+                    showMsg(
+                        admMsg,
+                        'শ্রেণি বাছাই করুন।',
+                        false
+                    );
+
+                    return;
+
+                }
+
+
+                const isEditing =
+                    !!editingRoll;
+
+
+                const keyChanged =
+                    !isEditing ||
+                    editingRoll !== roll ||
+                    editingClass !== className;
+
+
+                if (keyChanged) {
+
+                    const existing =
+                        await getStudent(
+                            roll,
+                            className
+                        );
+
+
+                    if (existing) {
+
+                        showMsg(
+                            admMsg,
+                            className +
+                            '-এ রোল নম্বর ' +
+                            toBn(roll) +
+                            ' ইতিমধ্যে ব্যবহৃত হয়েছে।',
+                            false
+                        );
+
+                        return;
+
+                    }
+
+                }
+
+
+                const student = {
+
+                    roll: roll,
+
+                    name:
+                        document
+                            .getElementById(
+                                'f_name'
+                            )
+                            .value
+                            .trim(),
+
+                    father:
+                        document
+                            .getElementById(
+                                'f_father'
+                            )
+                            .value
+                            .trim(),
+
+                    className:
+                        className,
+
+                    village:
+                        document
+                            .getElementById(
+                                'f_village'
+                            )
+                            .value
+                            .trim(),
+
+                    upazila:
+                        document
+                            .getElementById(
+                                'f_upazila'
+                            )
+                            .value
+                            .trim(),
+
+                    district:
+                        document
+                            .getElementById(
+                                'f_district'
+                            )
+                            .value
+                            .trim(),
+
+                    guardian:
+                        document
+                            .getElementById(
+                                'f_guardian'
+                            )
+                            .value
+                            .trim(),
+
+                    mobile:
+                        normalizeMobile(
+                            document
+                                .getElementById(
+                                    'f_mobile'
+                                )
+                                .value
+                        ),
+
+                    monthlyFee:
+                        document
+                            .getElementById(
+                                'f_fee'
+                            )
+                            .value
+                            ? Number(
+                                document
+                                    .getElementById(
+                                        'f_fee'
+                                    )
+                                    .value
+                            )
+                            : 0,
+
+                    admissionDate:
+                        document
+                            .getElementById(
+                                'f_date'
+                            )
+                            .value ||
+                        '',
+
+                    updatedAt:
+                        new Date()
+                            .toISOString()
+
+                };
+
+
+                if (
+                    !student.mobile
+                ) {
+
+                    showMsg(
+                        admMsg,
+                        'সঠিক বাংলাদেশি মোবাইল নম্বর দিন।',
+                        false
+                    );
+
+                    return;
+
+                }
+
+
+                const submitBtn =
+                    document
+                        .getElementById(
+                            'submitBtn'
+                        );
+
+
+                submitBtn.disabled =
+                    true;
+
+                submitBtn.textContent =
+                    'সংরক্ষণ হচ্ছে...';
+
+
+                try {
+
+                    if (
+                        isEditing &&
+                        keyChanged
+                    ) {
+
+                        const oldFees =
+                            await getFees(
+                                editingRoll,
+                                editingClass
+                            );
+
+
+                        await deleteStudentStorage(
+                            editingRoll,
+                            editingClass
+                        );
+
+
+                        await deleteFeesStorage(
+                            editingRoll,
+                            editingClass
+                        );
+
+
+                        if (
+                            oldFees.length
+                        ) {
+
+                            await saveFees(
+                                roll,
+                                className,
+                                oldFees
+                            );
+
+                        }
+
+                    }
+
+
+                    const result =
+                        await saveStudent(
+                            student
+                        );
+
+
+                    if (result) {
+
+                        showMsg(
+                            admMsg,
+                            isEditing
+                                ? 'তথ্য হালনাগাদ করা হয়েছে।'
+                                : 'ভর্তি ফরম সফলভাবে সংরক্ষণ করা হয়েছে।',
+                            true
+                        );
+
+
+                        clearAdmissionForm();
+
+                        renderStudentsTable();
+
+                        refreshFeesTabData();
+
+                    } else {
+
+                        showMsg(
+                            admMsg,
+                            'সংরক্ষণ ব্যর্থ হয়েছে।',
+                            false
+                        );
+
+                    }
+
+
+                } catch (err) {
+
+                    showMsg(
+                        admMsg,
+                        'ত্রুটি: ' +
+                        (
+                            err.message ||
+                            'অজানা ত্রুটি'
+                        ),
+                        false
+                    );
+
+                } finally {
+
+                    submitBtn.disabled =
+                        false;
+
+                    submitBtn.textContent =
+                        isEditing
+                            ? 'হালনাগাদ সংরক্ষণ করুন'
+                            : 'ভর্তি ফরম সংরক্ষণ করুন';
+
+                }
+
+            }
+        );
+
+
+        function loadStudentIntoForm(s) {
+
+            document.getElementById(
+                'editingRoll'
+            ).value =
+                s.roll;
+
+            document.getElementById(
+                'editingClass'
+            ).value =
+                s.className || '';
+
+
+            document.getElementById(
+                'f_name'
+            ).value =
+                s.name || '';
+
+
+            document.getElementById(
+                'f_father'
+            ).value =
+                s.father || '';
+
+
+            document.getElementById(
+                'f_roll'
+            ).value =
+                s.roll || '';
+
+
+            document.getElementById(
+                'f_class'
+            ).value =
+                s.className || '';
+
+
+            document.getElementById(
+                'f_fee'
+            ).value =
+                s.monthlyFee || '';
+
+
+            document.getElementById(
+                'f_village'
+            ).value =
+                s.village || '';
+
+
+            document.getElementById(
+                'f_upazila'
+            ).value =
+                s.upazila || '';
+
+
+            document.getElementById(
+                'f_district'
+            ).value =
+                s.district || '';
+
+
+            document.getElementById(
+                'f_guardian'
+            ).value =
+                s.guardian || '';
+
+
+            document.getElementById(
+                'f_mobile'
+            ).value =
+                s.mobile || '';
+
+
+            document.getElementById(
+                'f_date'
+            ).value =
+                s.admissionDate || '';
+
+
+            document.getElementById(
+                'admFormTitle'
+            ).textContent =
+                'তথ্য সম্পাদনা করুন — রোল ' +
+                toBn(s.roll);
+
+
+            document.getElementById(
+                'submitBtn'
+            ).textContent =
+                'হালনাগাদ সংরক্ষণ করুন';
+
+
+            document
+                .querySelector(
+                    '.tab-btn[data-tab="admission"]'
+                )
+                .click();
+
+
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+
+        }
+
+
+        /* =========================================================
+           CLASS DEFINITIONS
+        ========================================================= */
+
+        const classDefs = [
+
+            {
+                key: 'শিশু শ্রেণি',
+                badge: '০'
+            },
+
+            {
+                key: 'প্রথম শ্রেণি',
+                badge: '১'
+            },
+
+            {
+                key: 'দ্বিতীয় শ্রেণি',
+                badge: '২'
+            },
+
+            {
+                key: 'তৃতীয় শ্রেণি',
+                badge: '৩'
+            }
+
+        ];
+
+
+        const classIconSvg =
+            `<svg class="cls-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round">
+
+                <path d="M4 19.5V6.2c0-.9.7-1.6 1.6-1.7C7.6 4.3 10 4.6 12 6c2-1.4 4.4-1.7 6.4-1.5.9.1 1.6.8 1.6 1.7v13.3"/>
+
+                <path d="M4 19.5c1.9-.7 4.6-.9 6.4-.5.6.1 1.2.4 1.6.7"/>
+
+                <path d="M20 19.5c-1.9-.7-4.6-.9-6.4-.5-.6.1-1.2.4-1.6.7"/>
+
+                <path d="M12 6v13.7"/>
+
+            </svg>`;
+
+
+        /* =========================================================
+           STUDENTS TABLE
+        ========================================================= */
+
+        let allStudentsCache = [];
+
+        let selectedStudentClass = null;
+
+
+        async function renderStudentsTable() {
+
+            allStudentsCache =
+                await listStudents();
+
+            renderStudentClassCards();
+
+
+            if (
+                selectedStudentClass
+            ) {
+
+                applyStudentClassFilter();
+
+            }
+
+        }
+
+
+        function renderStudentClassCards() {
+
+            const wrap =
+                document.getElementById(
+                    'studentClassSelector'
+                );
+
+
+            wrap.innerHTML =
+                classDefs.map(c => {
+
+                    const count =
+                        allStudentsCache
+                            .filter(
+                                s =>
+                                    s.className ===
+                                    c.key
+                            )
+                            .length;
+
+
+                    const activeCls =
+                        selectedStudentClass ===
+                        c.key
+                            ? 'active'
+                            : '';
+
+
+                    return `
+                        <div
+                            class="class-card ${activeCls}"
+                            onclick="selectStudentClass('${escapeHtml(c.key)}')">
+
+                            <span class="cls-icon-wrap">
+
+                                ${classIconSvg}
+
+                                <span class="cls-badge">
+                                    ${c.badge}
+                                </span>
+
+                            </span>
+
+                            <span class="cls-label">
+                                ${c.key}
+                            </span>
+
+                            <span class="cls-count">
+                                ${toBn(count)}
+                                জন শিক্ষার্থী
+                            </span>
+
+                        </div>
+                    `;
+
                 }).join('');
-                grandTotal += rowTotal;
-                return `<tr>
-                    <td class="col-roll"><span class="roll-chip">${toBn(s.roll)}</span></td>
-                    <td class="col-name">${escapeHtml(s.name)}</td>
-                    <td class="col-father">${escapeHtml(s.father)}</td>
-                    ${cells}
-                    <td class="col-total">${fmtTaka(rowTotal)}</td>
-                  </tr>`;
-            }).join('');
 
-            const monthHeaders = bnMonthsShort.map(m => `<th>${m}</th>`).join('');
-            const footerMonthCells = monthTotals.map(t => `<td>${fmtTaka(t)}</td>`).join('');
+        }
+
+
+        window.selectStudentClass =
+            function(key) {
+
+                selectedStudentClass =
+                    key;
+
+
+                document.getElementById(
+                    'studentsTopSub'
+                ).textContent =
+                    key +
+                    ' এর শিক্ষার্থী তালিকা — রোল, নাম বা অভিভাবকের নাম দিয়ে খুঁজুন।';
+
+
+                renderStudentClassCards();
+
+
+                document.getElementById(
+                    'studentsListArea'
+                ).style.display =
+                    'block';
+
+
+                applyStudentClassFilter();
+
+
+                document
+                    .getElementById(
+                        'studentsListArea'
+                    )
+                    .scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'nearest'
+                    });
+
+            };
+
+
+        function applyStudentClassFilter() {
+
+            const q =
+                document
+                    .getElementById(
+                        'studentSearch'
+                    )
+                    .value
+                    .trim()
+                    .toLowerCase();
+
+
+            let list =
+                allStudentsCache.filter(
+                    s =>
+                        s.className ===
+                        selectedStudentClass
+                );
+
+
+            if (q) {
+
+                list =
+                    list.filter(
+                        s =>
+                            String(
+                                s.roll
+                            )
+                                .toLowerCase()
+                                .includes(q) ||
+
+                            (
+                                s.name || ''
+                            )
+                                .toLowerCase()
+                                .includes(q) ||
+
+                            (
+                                s.mobile || ''
+                            )
+                                .toLowerCase()
+                                .includes(q) ||
+
+                            (
+                                s.guardian || ''
+                            )
+                                .toLowerCase()
+                                .includes(q)
+                    );
+
+            }
+
+
+            drawStudentsTable(list);
+
+        }
+
+
+        function drawStudentsTable(list) {
+
+            const wrap =
+                document.getElementById(
+                    'studentsTableWrap'
+                );
+
+
+            if (!list.length) {
+
+                wrap.innerHTML =
+                    `
+                    <div class="empty-state">
+
+                        <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.5">
+
+                            <path d="M4 20c0-4 3.5-6 8-6s8 2 8 6M12 12a4 4 0 100-8 4 4 0 000 8z"/>
+
+                        </svg>
+
+                        <div>
+                            এখনো কোনো শিক্ষার্থী ভর্তি করা হয়নি।
+                        </div>
+
+                    </div>
+                    `;
+
+                return;
+
+            }
+
+
+            const rows =
+                list.map(s => `
+
+                    <tr>
+
+                        <td>
+                            <span class="roll-chip">
+                                ${escapeHtml(
+                                    toBn(s.roll)
+                                )}
+                            </span>
+                        </td>
+
+                        <td>
+                            ${escapeHtml(
+                                s.name
+                            )}
+                        </td>
+
+                        <td>
+                            ${escapeHtml(
+                                s.className || '-'
+                            )}
+                        </td>
+
+                        <td>
+                            ${escapeHtml(
+                                s.father
+                            )}
+                        </td>
+
+                        <td>
+                            ${escapeHtml(
+                                s.village
+                            )},
+                            ${escapeHtml(
+                                s.upazila
+                            )}
+                        </td>
+
+                        <td>
+                            ${escapeHtml(
+                                s.guardian
+                            )}
+                        </td>
+
+                        <td>
+                            ${escapeHtml(
+                                s.mobile
+                            )}
+                        </td>
+
+                        <td>
+
+                            <div class="table-actions">
+
+                                <button
+                                    class="btn btn-ghost btn-sm"
+                                    onclick="editStudentByRoll('${escapeHtml(s.roll)}','${escapeHtml(s.className || '')}')">
+
+                                    সম্পাদনা
+
+                                </button>
+
+                                <button
+                                    class="btn btn-danger btn-sm"
+                                    onclick="removeStudent('${escapeHtml(s.roll)}','${escapeHtml(s.className || '')}')">
+
+                                    মুছুন
+
+                                </button>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                `).join('');
+
 
             wrap.innerHTML = `
-                <table class="ledger">
-                  <thead>
-                    <tr>
-                      <th class="col-roll">রোল</th>
-                      <th class="col-name">নাম</th>
-                      <th class="col-father">পিতার নাম</th>
-                      ${monthHeaders}
-                      <th class="col-total">মোট</th>
-                    </tr>
-                  </thead>
-                  <tbody>${bodyRows}</tbody>
-                  <tfoot>
-                    <tr>
-                      <td class="col-roll"></td>
-                      <td class="col-name">সর্বমোট</td>
-                      <td class="col-father"></td>
-                      ${footerMonthCells}
-                      <td class="col-grand">${fmtTaka(grandTotal)}</td>
-                    </tr>
-                  </tfoot>
+
+                <table>
+
+                    <colgroup>
+
+                        <col class="col-roll">
+                        <col class="col-name">
+                        <col class="col-class">
+                        <col class="col-father">
+                        <col class="col-addr">
+                        <col class="col-guard">
+                        <col class="col-mobile">
+                        <col class="col-action">
+
+                    </colgroup>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>রোল</th>
+                            <th>নাম</th>
+                            <th>শ্রেণি</th>
+                            <th>পিতার নাম</th>
+                            <th>ঠিকানা</th>
+                            <th>অভিভাবক</th>
+                            <th>মোবাইল</th>
+                            <th>কার্যক্রম</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+                        ${rows}
+                    </tbody>
+
                 </table>
-              `;
+
+            `;
+
         }
 
-        // ---------------- Modal Payment Management ----------------
-        let modalRoll = null, modalClassName = null, modalMonthIdx = null, modalYear = null;
 
-        window.openMonthModal = function(roll, monthIdx, year) {
-            const s = ledgerStudents.find(x => String(x.roll) === String(roll));
-            if (!s) return;
-            modalRoll = roll;
-            modalClassName = s.className;
-            modalMonthIdx = monthIdx;
-            modalYear = year;
+        document
+            .getElementById(
+                'studentSearch'
+            )
+            .addEventListener(
+                'input',
+                () => {
 
-            document.getElementById('modalTitle').textContent = `${s.name} — ${bnMonths[monthIdx]} ${toBn(year)}`;
-            document.getElementById('modalSub').textContent = `রোল ${toBn(s.roll)} · পিতা: ${s.father}`;
-            document.getElementById('m_amount').value = s.monthlyFee || '';
-            document.getElementById('m_date').valueAsDate = new Date();
-            document.getElementById('modalMsg').classList.remove('show');
+                    if (
+                        !selectedStudentClass
+                    ) {
+                        return;
+                    }
 
-            drawModalExisting();
-            document.getElementById('modalOverlay').classList.add('show');
-            document.getElementById('m_amount').focus();
-        };
+                    applyStudentClassFilter();
+
+                }
+            );
+
+
+        window.editStudentByRoll =
+            async function(
+                roll,
+                className
+            ) {
+
+                const s =
+                    await getStudent(
+                        roll,
+                        className
+                    );
+
+                if (s) {
+                    loadStudentIntoForm(s);
+                }
+
+            };
+
+
+        window.removeStudent =
+            async function(
+                roll,
+                className
+            ) {
+
+                if (
+                    !confirm(
+                        'আপনি কি নিশ্চিত এই শিক্ষার্থীর তথ্য ও বেতনের রেকর্ড মুছে ফেলতে চান?'
+                    )
+                ) {
+                    return;
+                }
+
+
+                await deleteStudentStorage(
+                    roll,
+                    className
+                );
+
+                await deleteFeesStorage(
+                    roll,
+                    className
+                );
+
+
+                renderStudentsTable();
+
+                refreshFeesTabData();
+
+            };
+
+
+        /* =========================================================
+           FEE REGISTER
+        ========================================================= */
+
+        let ledgerYear =
+            new Date().getFullYear();
+
+        let allStudentsFull = [];
+
+        let selectedClass = null;
+
+        let ledgerStudents = [];
+
+        let ledgerFeesByRoll = {};
+
+        let ledgerSearchTerm = '';
+
+        let currentSettleTs = 0;
+
+
+        document.getElementById(
+            'yearLabel'
+        ).textContent =
+            toBn(ledgerYear);
+
+
+        document.getElementById(
+            'yearPrev'
+        ).addEventListener(
+            'click',
+            () => {
+
+                ledgerYear -= 1;
+
+                document.getElementById(
+                    'yearLabel'
+                ).textContent =
+                    toBn(ledgerYear);
+
+                drawLedgerTable();
+
+            }
+        );
+
+
+        document.getElementById(
+            'yearNext'
+        ).addEventListener(
+            'click',
+            () => {
+
+                ledgerYear += 1;
+
+                document.getElementById(
+                    'yearLabel'
+                ).textContent =
+                    toBn(ledgerYear);
+
+                drawLedgerTable();
+
+            }
+        );
+
+
+        document.getElementById(
+            'ledgerSearch'
+        ).addEventListener(
+            'input',
+            e => {
+
+                ledgerSearchTerm =
+                    e.target.value
+                        .trim()
+                        .toLowerCase();
+
+                drawLedgerTable();
+
+            }
+        );
+
+
+        function renderClassCards() {
+
+            const wrap =
+                document.getElementById(
+                    'classSelector'
+                );
+
+
+            wrap.innerHTML =
+                classDefs.map(c => {
+
+                    const count =
+                        allStudentsFull
+                            .filter(
+                                s =>
+                                    s.className ===
+                                    c.key
+                            )
+                            .length;
+
+
+                    const activeCls =
+                        selectedClass ===
+                        c.key
+                            ? 'active'
+                            : '';
+
+
+                    return `
+
+                        <div
+                            class="class-card ${activeCls}"
+                            onclick="selectClass('${escapeHtml(c.key)}')">
+
+                            <span class="cls-icon-wrap">
+
+                                ${classIconSvg}
+
+                                <span class="cls-badge">
+                                    ${c.badge}
+                                </span>
+
+                            </span>
+
+                            <span class="cls-label">
+                                ${c.key}
+                            </span>
+
+                            <span class="cls-count">
+                                ${toBn(count)}
+                                জন শিক্ষার্থী
+                            </span>
+
+                        </div>
+
+                    `;
+
+                }).join('');
+
+        }
+
+
+        window.selectClass =
+            async function(key) {
+
+                selectedClass =
+                    key;
+
+
+                document.getElementById(
+                    'feeTopSub'
+                ).textContent =
+                    key +
+                    ' এর বেতন খাতা — যেকোনো মাসের ঘরে ক্লিক করে বেতন যোগ করুন।';
+
+
+                renderClassCards();
+
+
+                document.getElementById(
+                    'ledgerArea'
+                ).style.display =
+                    'block';
+
+
+                await loadClassLedger(key);
+
+
+                document
+                    .getElementById(
+                        'ledgerArea'
+                    )
+                    .scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'nearest'
+                    });
+
+            };
+
+
+        async function loadClassLedger(key) {
+
+            const wrap =
+                document.getElementById(
+                    'ledgerWrap'
+                );
+
+
+            wrap.innerHTML =
+                '<div class="loading">বেতন খাতা লোড হচ্ছে...</div>';
+
+
+            document.getElementById(
+                'yearLabel'
+            ).textContent =
+                toBn(ledgerYear);
+
+
+            ledgerStudents =
+                allStudentsFull.filter(
+                    s =>
+                        s.className ===
+                        key
+                );
+
+
+            ledgerFeesByRoll = {};
+
+
+            for (
+                const s of ledgerStudents
+            ) {
+
+                ledgerFeesByRoll[
+                    s.roll
+                ] =
+                    await getFees(
+                        s.roll,
+                        s.className
+                    );
+
+            }
+
+
+            currentSettleTs =
+                await getSettleTimestamp(
+                    key
+                );
+
+
+            updateSettleDisplay();
+
+            drawLedgerTable();
+
+        }
+
+
+        async function getSettleTimestamp(
+            className
+        ) {
+
+            const raw =
+                await storeGet(
+                    'settle:' +
+                    classCode(className)
+                );
+
+
+            if (!raw) {
+                return 0;
+            }
+
+
+            try {
+
+                return Number(
+                    JSON.parse(raw).timestamp
+                ) || 0;
+
+            } catch (e) {
+
+                return 0;
+
+            }
+
+        }
+
+
+        async function setSettleTimestamp(
+            className,
+            ts
+        ) {
+
+            return await storeSet(
+                'settle:' +
+                classCode(className),
+
+                JSON.stringify({
+                    timestamp: ts
+                })
+            );
+
+        }
+
+
+        function computeRunningTotal() {
+
+            let total = 0;
+
+
+            for (
+                const roll in ledgerFeesByRoll
+            ) {
+
+                const list =
+                    ledgerFeesByRoll[
+                        roll
+                    ] || [];
+
+
+                for (
+                    const f of list
+                ) {
+
+                    if (
+                        Number(f.id) >
+                        currentSettleTs
+                    ) {
+
+                        total +=
+                            Number(
+                                f.amount
+                            ) || 0;
+
+                    }
+
+                }
+
+            }
+
+
+            return total;
+
+        }
+
+
+        function updateSettleDisplay() {
+
+            const el =
+                document.getElementById(
+                    'settleAmt'
+                );
+
+
+            if (el) {
+
+                el.textContent =
+                    fmtTaka(
+                        computeRunningTotal()
+                    );
+
+            }
+
+        }
+
+
+        document.getElementById(
+            'settleBtn'
+        ).addEventListener(
+            'click',
+            async () => {
+
+                if (!selectedClass) {
+                    return;
+                }
+
+
+                if (
+                    !confirm(
+                        'এখন পর্যন্ত হিসাব সম্পন্ন ধরা হবে এবং কাউন্টার শূন্য হয়ে যাবে। এগিয়ে যাবেন?'
+                    )
+                ) {
+                    return;
+                }
+
+
+                const btn =
+                    document.getElementById(
+                        'settleBtn'
+                    );
+
+
+                btn.disabled =
+                    true;
+
+
+                try {
+
+                    const ts =
+                        Date.now();
+
+
+                    await setSettleTimestamp(
+                        selectedClass,
+                        ts
+                    );
+
+
+                    currentSettleTs =
+                        ts;
+
+
+                    updateSettleDisplay();
+
+
+                    showMsg(
+                        document.getElementById(
+                            'feeMsg'
+                        ),
+                        'হিসাব সম্পন্ন ধরা হয়েছে।',
+                        true
+                    );
+
+
+                } catch (err) {
+
+                    showMsg(
+                        document.getElementById(
+                            'feeMsg'
+                        ),
+                        'ত্রুটি ঘটেছে।',
+                        false
+                    );
+
+                } finally {
+
+                    btn.disabled =
+                        false;
+
+                }
+
+            }
+        );
+
+
+        async function refreshFeesTabData() {
+
+            allStudentsFull =
+                await listStudents();
+
+            renderClassCards();
+
+
+            if (selectedClass) {
+
+                await loadClassLedger(
+                    selectedClass
+                );
+
+            }
+
+        }
+
+
+        async function renderFeeLedger() {
+
+            await refreshFeesTabData();
+
+        }
+
+
+        function monthAmount(
+            roll,
+            monthIdx,
+            year
+        ) {
+
+            const list =
+                ledgerFeesByRoll[
+                    roll
+                ] || [];
+
+
+            return list
+                .filter(
+                    f =>
+                        f.month ===
+                            bnMonths[
+                                monthIdx
+                            ] &&
+                        Number(f.year) ===
+                            Number(year)
+                )
+                .reduce(
+                    (sum, f) =>
+                        sum +
+                        (
+                            Number(
+                                f.amount
+                            ) || 0
+                        ),
+                    0
+                );
+
+        }
+
+
+        function drawLedgerTable() {
+
+            const wrap =
+                document.getElementById(
+                    'ledgerWrap'
+                );
+
+
+            let students =
+                ledgerStudents;
+
+
+            if (
+                ledgerSearchTerm
+            ) {
+
+                students =
+                    students.filter(
+                        s =>
+
+                            String(
+                                s.roll
+                            )
+                                .toLowerCase()
+                                .includes(
+                                    ledgerSearchTerm
+                                ) ||
+
+                            (
+                                s.name || ''
+                            )
+                                .toLowerCase()
+                                .includes(
+                                    ledgerSearchTerm
+                                ) ||
+
+                            (
+                                s.father || ''
+                            )
+                                .toLowerCase()
+                                .includes(
+                                    ledgerSearchTerm
+                                )
+                    );
+
+            }
+
+
+            if (!students.length) {
+
+                wrap.innerHTML =
+                    `
+
+                    <div class="empty-state">
+
+                        <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.5">
+
+                            <path d="M4 20c0-4 3.5-6 8-6s8 2 8 6M12 12a4 4 0 100-8 4 4 0 000 8z"/>
+
+                        </svg>
+
+                        <div>
+
+                            ${
+                                ledgerSearchTerm
+                                    ? 'কোনো মিল পাওয়া যায়নি।'
+                                    : 'এখনো কোনো শিক্ষার্থী ভর্তি করা হয়নি। প্রথমে ভর্তি ফরম পূরণ করুন।'
+                            }
+
+                        </div>
+
+                    </div>
+
+                    `;
+
+                return;
+
+            }
+
+
+            const monthTotals =
+                new Array(12).fill(0);
+
+            let grandTotal = 0;
+
+
+            const bodyRows =
+                students.map(s => {
+
+                    let rowTotal = 0;
+
+
+                    const cells =
+                        bnMonths.map(
+                            (
+                                mName,
+                                idx
+                            ) => {
+
+                                const amt =
+                                    monthAmount(
+                                        s.roll,
+                                        idx,
+                                        ledgerYear
+                                    );
+
+
+                                monthTotals[
+                                    idx
+                                ] += amt;
+
+
+                                rowTotal +=
+                                    amt;
+
+
+                                const cellContent =
+                                    amt > 0
+
+                                        ?
+
+                                        `<span class="paid-amt">
+                                            ${fmtTaka(amt)}
+                                        </span>`
+
+                                        :
+
+                                        `<span class="unpaid-dash">
+                                            —
+                                        </span>`;
+
+
+                                return `
+
+                                    <td
+                                        class="month-cell"
+                                        onclick="openMonthModal('${escapeHtml(s.roll)}', ${idx}, ${ledgerYear})">
+
+                                        ${cellContent}
+
+                                    </td>
+
+                                `;
+
+                            }
+                        ).join('');
+
+
+                    grandTotal +=
+                        rowTotal;
+
+
+                    return `
+
+                        <tr>
+
+                            <td class="col-roll">
+
+                                <span class="roll-chip">
+                                    ${toBn(s.roll)}
+                                </span>
+
+                            </td>
+
+                            <td class="col-name">
+                                ${escapeHtml(
+                                    s.name
+                                )}
+                            </td>
+
+                            <td class="col-father">
+                                ${escapeHtml(
+                                    s.father
+                                )}
+                            </td>
+
+                            ${cells}
+
+                            <td class="col-total">
+                                ${fmtTaka(rowTotal)}
+                            </td>
+
+                        </tr>
+
+                    `;
+
+                }).join('');
+
+
+            const monthHeaders =
+                bnMonthsShort
+                    .map(
+                        m =>
+                            `<th>${m}</th>`
+                    )
+                    .join('');
+
+
+            const footerMonthCells =
+                monthTotals
+                    .map(
+                        t =>
+                            `<td>${fmtTaka(t)}</td>`
+                    )
+                    .join('');
+
+
+            wrap.innerHTML = `
+
+                <table class="ledger">
+
+                    <thead>
+
+                        <tr>
+
+                            <th class="col-roll">
+                                রোল
+                            </th>
+
+                            <th class="col-name">
+                                নাম
+                            </th>
+
+                            <th class="col-father">
+                                পিতার নাম
+                            </th>
+
+                            ${monthHeaders}
+
+                            <th class="col-total">
+                                মোট
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        ${bodyRows}
+
+                    </tbody>
+
+                    <tfoot>
+
+                        <tr>
+
+                            <td class="col-roll"></td>
+
+                            <td class="col-name">
+                                সর্বমোট
+                            </td>
+
+                            <td class="col-father"></td>
+
+                            ${footerMonthCells}
+
+                            <td class="col-grand">
+                                ${fmtTaka(grandTotal)}
+                            </td>
+
+                        </tr>
+
+                    </tfoot>
+
+                </table>
+
+            `;
+
+        }
+
+
+        /* =========================================================
+           PAYMENT MODAL
+        ========================================================= */
+
+        let modalRoll = null;
+        let modalClassName = null;
+        let modalMonthIdx = null;
+        let modalYear = null;
+
+
+        window.openMonthModal =
+            function(
+                roll,
+                monthIdx,
+                year
+            ) {
+
+                const s =
+                    ledgerStudents.find(
+                        x =>
+                            String(x.roll) ===
+                            String(roll)
+                    );
+
+
+                if (!s) {
+                    return;
+                }
+
+
+                modalRoll =
+                    roll;
+
+                modalClassName =
+                    s.className;
+
+                modalMonthIdx =
+                    monthIdx;
+
+                modalYear =
+                    year;
+
+
+                document.getElementById(
+                    'modalTitle'
+                ).textContent =
+                    `${s.name} — ${bnMonths[monthIdx]} ${toBn(year)}`;
+
+
+                document.getElementById(
+                    'modalSub'
+                ).textContent =
+                    `রোল ${toBn(s.roll)} · পিতা: ${s.father}`;
+
+
+                document.getElementById(
+                    'm_amount'
+                ).value =
+                    s.monthlyFee || '';
+
+
+                document.getElementById(
+                    'm_date'
+                ).valueAsDate =
+                    new Date();
+
+
+                document.getElementById(
+                    'modalMsg'
+                ).classList.remove(
+                    'show'
+                );
+
+
+                document.getElementById(
+                    'smsStatus'
+                ).textContent =
+                    '';
+
+
+                drawModalExisting();
+
+
+                document.getElementById(
+                    'modalOverlay'
+                ).classList.add(
+                    'show'
+                );
+
+
+                document.getElementById(
+                    'm_amount'
+                ).focus();
+
+            };
+
 
         function drawModalExisting() {
-            const list = (ledgerFeesByRoll[modalRoll] || []).filter(
-                f => f.month === bnMonths[modalMonthIdx] && Number(f.year) === Number(modalYear)
-            );
-            const box = document.getElementById('modalExisting');
+
+            const list =
+                (
+                    ledgerFeesByRoll[
+                        modalRoll
+                    ] || []
+                )
+                    .filter(
+                        f =>
+                            f.month ===
+                                bnMonths[
+                                    modalMonthIdx
+                                ] &&
+                            Number(f.year) ===
+                                Number(modalYear)
+                    );
+
+
+            const box =
+                document.getElementById(
+                    'modalExisting'
+                );
+
+
             if (!list.length) {
-                box.innerHTML = `<p style="color:var(--ink-soft); font-size:.85rem; margin:0 0 4px;">এই মাসে এখনো কোনো বেতন যোগ করা হয়নি।</p>`;
+
+                box.innerHTML =
+                    `
+
+                    <p
+                        style="
+                            color:var(--ink-soft);
+                            font-size:.85rem;
+                            margin:0 0 4px;
+                        ">
+
+                        এই মাসে এখনো কোনো
+                        বেতন যোগ করা হয়নি।
+
+                    </p>
+
+                    `;
+
                 return;
+
             }
-            box.innerHTML = list.map(f => `
-                  <div class="pay-row">
-                    <span>${fmtTaka(f.amount)} ${f.date ? '· ' + toBn(f.date) : ''}</span>
-                    <button type="button" class="btn btn-danger btn-sm" onclick="deleteModalPayment('${f.id}')">মুছুন</button>
-                  </div>
-                `).join('');
+
+
+            box.innerHTML =
+                list.map(
+                    f =>
+                        `
+
+                        <div class="pay-row">
+
+                            <span>
+
+                                ${fmtTaka(f.amount)}
+
+                                ${
+                                    f.date
+                                        ? ' · ' +
+                                          toBn(f.date)
+                                        : ''
+                                }
+
+                            </span>
+
+                            <button
+                                type="button"
+                                class="btn btn-danger btn-sm"
+                                onclick="deleteModalPayment('${f.id}')">
+
+                                মুছুন
+
+                            </button>
+
+                        </div>
+
+                        `
+                ).join('');
+
         }
+
 
         function closeModal() {
-            document.getElementById('modalOverlay').classList.remove('show');
-            modalRoll = null; modalClassName = null; modalMonthIdx = null; modalYear = null;
+
+            document.getElementById(
+                'modalOverlay'
+            ).classList.remove(
+                'show'
+            );
+
+
+            modalRoll = null;
+            modalClassName = null;
+            modalMonthIdx = null;
+            modalYear = null;
+
         }
-        document.getElementById('modalCloseBtn').addEventListener('click', closeModal);
-        document.getElementById('modalCancelBtn').addEventListener('click', closeModal);
-        document.getElementById('modalOverlay').addEventListener('click', (e) => {
-            if (e.target.id === 'modalOverlay') closeModal();
-        });
 
-        document.getElementById('modalPayForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const amount = Number(document.getElementById('m_amount').value);
-            const modalMsg = document.getElementById('modalMsg');
-            if (!amount || amount <= 0) {
-                showMsg(modalMsg, 'সঠিক পরিমাণ লিখুন।', false);
-                return;
-            }
-            const submitBtn = e.target.querySelector('button[type="submit"]');
-            submitBtn.disabled = true;
-            try {
-                const entry = {
-                    id: Date.now().toString(),
-                    month: bnMonths[modalMonthIdx],
-                    year: modalYear,
-                    amount: amount,
-                    date: document.getElementById('m_date').value || new Date().toISOString().slice(0, 10)
-                };
-                const list = await getFees(modalRoll, modalClassName);
-                list.push(entry);
-                await saveFees(modalRoll, modalClassName, list);
-                ledgerFeesByRoll[modalRoll] = list;
-                document.getElementById('m_amount').value = '';
-                drawModalExisting();
-                drawLedgerTable();
-                updateSettleDisplay();
-                closeModal();
-                showMsg(document.getElementById('feeMsg'), 'বেতন যোগ করা হয়েছে।', true);
-            } catch (err) {
-                showMsg(modalMsg, 'ত্রুটি হয়েছে।', false);
-            } finally {
-                submitBtn.disabled = false;
-            }
-        });
 
-        window.deleteModalPayment = async function(id) {
-            try {
-                const list = await getFees(modalRoll, modalClassName);
-                const updated = list.filter(f => f.id !== id);
-                await saveFees(modalRoll, modalClassName, updated);
-                ledgerFeesByRoll[modalRoll] = updated;
-                drawModalExisting();
-                drawLedgerTable();
-                updateSettleDisplay();
-            } catch (err) {
-                showMsg(document.getElementById('modalMsg'), 'মুছে ফেলা যায়নি।', false);
+        document.getElementById(
+            'modalCloseBtn'
+        ).addEventListener(
+            'click',
+            closeModal
+        );
+
+
+        document.getElementById(
+            'modalCancelBtn'
+        ).addEventListener(
+            'click',
+            closeModal
+        );
+
+
+        document.getElementById(
+            'modalOverlay'
+        ).addEventListener(
+            'click',
+            e => {
+
+                if (
+                    e.target.id ===
+                    'modalOverlay'
+                ) {
+
+                    closeModal();
+
+                }
+
             }
+        );
+
+
+        /* =========================================================
+           ADD PAYMENT + PAID SMS
+        ========================================================= */
+
+        document.getElementById(
+            'modalPayForm'
+        ).addEventListener(
+            'submit',
+            async e => {
+
+                e.preventDefault();
+
+
+                const amount =
+                    Number(
+                        document.getElementById(
+                            'm_amount'
+                        ).value
+                    );
+
+
+                const modalMsg =
+                    document.getElementById(
+                        'modalMsg'
+                    );
+
+
+                if (
+                    !amount ||
+                    amount <= 0
+                ) {
+
+                    showMsg(
+                        modalMsg,
+                        'সঠিক পরিমাণ লিখুন।',
+                        false
+                    );
+
+                    return;
+
+                }
+
+
+                const submitBtn =
+                    e.target.querySelector(
+                        'button[type="submit"]'
+                    );
+
+
+                submitBtn.disabled =
+                    true;
+
+
+                try {
+
+                    const student =
+                        ledgerStudents.find(
+                            x =>
+                                String(
+                                    x.roll
+                                ) ===
+                                String(
+                                    modalRoll
+                                )
+                        );
+
+
+                    const entry = {
+
+                        id:
+                            Date.now()
+                                .toString(),
+
+                        month:
+                            bnMonths[
+                                modalMonthIdx
+                            ],
+
+                        year:
+                            modalYear,
+
+                        amount:
+                            amount,
+
+                        date:
+                            document
+                                .getElementById(
+                                    'm_date'
+                                )
+                                .value ||
+                            new Date()
+                                .toISOString()
+                                .slice(
+                                    0,
+                                    10
+                                )
+
+                    };
+
+
+                    const list =
+                        await getFees(
+                            modalRoll,
+                            modalClassName
+                        );
+
+
+                    list.push(entry);
+
+
+                    await saveFees(
+                        modalRoll,
+                        modalClassName,
+                        list
+                    );
+
+
+                    ledgerFeesByRoll[
+                        modalRoll
+                    ] =
+                        list;
+
+
+                    document.getElementById(
+                        'm_amount'
+                    ).value = '';
+
+
+                    drawModalExisting();
+
+                    drawLedgerTable();
+
+                    updateSettleDisplay();
+
+
+                    showMsg(
+                        // document.getElementById(
+                        //     'feeMsg'
+                        // ),
+                        'বেতন যোগ করা হয়েছে।',
+                        true
+                    );
+
+
+                    /* ============================
+                       PAID SMS
+                       ============================ */
+
+                    if (
+                        student &&
+                        student.mobile
+                    ) {
+
+                        showSmsStatus(
+                            'বেতন সংরক্ষণ হয়েছে। SMS পাঠানো হচ্ছে...',
+                            true
+                        );
+
+
+                        const msg =
+                            buildPaidSmsMessage(
+                                student.name,
+                                bnMonths[
+                                    modalMonthIdx
+                                ],
+                                amount
+                            );
+
+
+                        const res =
+                            await sendSms(
+                                student.mobile,
+                                msg
+                            );
+
+
+                        if (res.success) {
+
+                            showSmsStatus(
+                                'বেতন SMS সফলভাবে পাঠানোর হয়েছে।',
+                                true
+                            );
+
+                        } else {
+
+                            showSmsStatus(
+                                'বেতন সংরক্ষণ হয়েছে, কিন্তু SMS পাঠানো যায়নি: ' +
+                                res.error,
+                                false
+                            );
+
+                        }
+
+
+                    } else {
+
+                        showSmsStatus(
+                            'মোবাইল নম্বর না থাকায় SMS পাঠানো হয়নি।',
+                            false
+                        );
+
+                    }
+
+
+                    /*
+                     * SMS status দেখানোর জন্য
+                     * modal কিছুক্ষণ খোলা রাখা হচ্ছে।
+                     */
+
+                    setTimeout(
+                        () => {
+
+                            closeModal();
+
+                        },
+                        1800
+                    );
+
+
+                } catch (err) {
+
+                    showMsg(
+                        modalMsg,
+                        'ত্রুটি হয়েছে: ' +
+                        (
+                            err.message ||
+                            'অজানা ত্রুটি'
+                        ),
+                        false
+                    );
+
+                } finally {
+
+                    submitBtn.disabled =
+                        false;
+
+                }
+
+            }
+        );
+
+
+        /* =========================================================
+           DUE SMS
+        ========================================================= */
+
+        document.getElementById(
+            'modalDueAlertBtn'
+        ).addEventListener(
+            'click',
+            async () => {
+
+                const student =
+                    ledgerStudents.find(
+                        x =>
+                            String(
+                                x.roll
+                            ) ===
+                            String(
+                                modalRoll
+                            )
+                    );
+
+
+                if (!student) {
+                    return;
+                }
+
+
+                if (!student.mobile) {
+
+                    showSmsStatus(
+                        'মোবাইল নম্বর না থাকায় SMS পাঠানো যায়নি।',
+                        false
+                    );
+
+                    return;
+
+                }
+
+
+                const paidSoFar =
+                    (
+                        ledgerFeesByRoll[
+                            modalRoll
+                        ] || []
+                    )
+                        .filter(
+                            f =>
+                                f.month ===
+                                    bnMonths[
+                                        modalMonthIdx
+                                    ] &&
+                                Number(
+                                    f.year
+                                ) ===
+                                    Number(
+                                        modalYear
+                                    )
+                        )
+                        .reduce(
+                            (
+                                sum,
+                                f
+                            ) =>
+                                sum +
+                                (
+                                    Number(
+                                        f.amount
+                                    ) || 0
+                                ),
+                            0
+                        );
+
+
+                const monthlyFee =
+                    Number(
+                        student.monthlyFee
+                    ) || 0;
+
+
+                const dueAmount =
+                    monthlyFee -
+                    paidSoFar;
+
+
+                if (
+                    dueAmount <= 0
+                ) {
+
+                    showSmsStatus(
+                        'এই মাসের বেতন সম্পূর্ণ পরিশোধিত — তাগাদার প্রয়োজন নেই।',
+                        false
+                    );
+
+                    return;
+
+                }
+
+
+                const btn =
+                    document.getElementById(
+                        'modalDueAlertBtn'
+                    );
+
+
+                btn.disabled =
+                    true;
+
+
+                showSmsStatus(
+                    'বকেয়া তাগাদা SMS পাঠানো হচ্ছে...',
+                    true
+                );
+
+
+                try {
+
+                    const msg =
+                        buildDueSmsMessage(
+                            student.name,
+                            bnMonths[
+                                modalMonthIdx
+                            ],
+                            dueAmount
+                        );
+
+
+                    const res =
+                        await sendSms(
+                            student.mobile,
+                            msg
+                        );
+
+
+                    if (res.success) {
+
+                        showSmsStatus(
+                            'বকেয়া তাগাদার SMS সফলভাবে পাঠানো হয়েছে।',
+                            true
+                        );
+
+                    } else {
+
+                        showSmsStatus(
+                            'SMS পাঠানো যায়নি: ' +
+                            res.error,
+                            false
+                        );
+
+                    }
+
+
+                } finally {
+
+                    btn.disabled =
+                        false;
+
+                }
+
+            }
+        );
+
+
+        /* =========================================================
+           DELETE PAYMENT
+        ========================================================= */
+
+        window.deleteModalPayment =
+            async function(id) {
+
+                try {
+
+                    const list =
+                        await getFees(
+                            modalRoll,
+                            modalClassName
+                        );
+
+
+                    const updated =
+                        list.filter(
+                            f =>
+                                f.id !== id
+                        );
+
+
+                    await saveFees(
+                        modalRoll,
+                        modalClassName,
+                        updated
+                    );
+
+
+                    ledgerFeesByRoll[
+                        modalRoll
+                    ] =
+                        updated;
+
+
+                    drawModalExisting();
+
+                    drawLedgerTable();
+
+                    updateSettleDisplay();
+
+
+                } catch (err) {
+
+                    showMsg(
+                        document.getElementById(
+                            'modalMsg'
+                        ),
+                        'মুছে ফেলা যায়নি।',
+                        false
+                    );
+
+                }
+
+            };
+
+
+        /* =========================================================
+           INITIALIZE
+        ========================================================= */
+
+        document.getElementById(
+            'f_date'
+        ).valueAsDate =
+            new Date();
+
+
+        if (
+            !hasRealStorage ||
+            (
+                typeof window.__storageHealthy !==
+                'undefined' &&
+                !window.__storageHealthy
+            )
+        ) {
+
+            showStorageBanner();
+
+        }
+
+
+        Promise.all([
+            renderStudentsTable(),
+            renderFeeLedger()
+        ]).catch(console.error);
+
+
+        window.firebaseReady
+            .then(
+                async db => {
+
+                    if (!db) {
+                        return;
+                    }
+
+                    await loadFirebaseDataCache(
+                        db
+                    );
+
+
+                    await Promise.all([
+                        renderStudentsTable(),
+                        renderFeeLedger()
+                    ]);
+
+                }
+            )
+            .catch(console.error);
+
+    </script>
+
+
+    <!-- =========================================================
+         FIREBASE
+    ========================================================= -->
+
+    <script type="module">
+
+        import {
+            initializeApp
+        }
+        from
+        "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+
+
+        import {
+            getDatabase,
+            ref,
+            get,
+            set,
+            remove
+        }
+        from
+        "https://www.gstatic.com/firebasejs/12.17.1/firebase-database.js";
+
+
+        const firebaseConfig = {
+
+            apiKey:
+                "AIzaSyCIoSIq3Ci9wODl_OMk5XDMrAK7mVLQvzs",
+
+            authDomain:
+                "madrasa-admission-system.firebaseapp.com",
+
+            databaseURL:
+                "https://madrasa-admission-system-default-rtdb.firebaseio.com",
+
+            projectId:
+                "madrasa-admission-system",
+
+            storageBucket:
+                "madrasa-admission-system.firebasestorage.app",
+
+            messagingSenderId:
+                "722552487890",
+
+            appId:
+                "1:722552487890:web:7a8f6d8deb5da44c11520b"
+
         };
 
-        // Initialize Application
-        document.getElementById('f_date').valueAsDate = new Date();
-        if (!hasRealStorage || (typeof window.__storageHealthy !== 'undefined' && !window.__storageHealthy)) {
-            showStorageBanner();
+
+        try {
+
+            const app =
+                initializeApp(
+                    firebaseConfig
+                );
+
+
+            const db =
+                getDatabase(
+                    app
+                );
+
+
+            window.firebaseApp =
+                app;
+
+
+            window.firebaseDb =
+                db;
+
+
+            window.firebaseFns = {
+
+                ref,
+                get,
+                set,
+                remove
+
+            };
+
+
+            if (
+                window.__resolveFirebaseReady
+            ) {
+
+                window.__resolveFirebaseReady(
+                    db
+                );
+
+            }
+
+
+        } catch (error) {
+
+            console.error(
+                'Firebase initialization failed:',
+                error
+            );
+
+
+            if (
+                window.__resolveFirebaseReady
+            ) {
+
+                window.__resolveFirebaseReady(
+                    null
+                );
+
+            }
+
         }
-        // প্রথমে local/RAM cache থেকে দ্রুত UI দেখান।
-        Promise.all([renderStudentsTable(), renderFeeLedger()]).catch(console.error);
 
-        // Firebase ready হলে একবারে পুরো data cache করে UI refresh করুন।
-        window.firebaseReady.then(async (db) => {
-            if (!db) return;
-            await loadFirebaseDataCache(db);
-            await Promise.all([renderStudentsTable(), renderFeeLedger()]);
-        }).catch(console.error);
     </script>
-    <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
-  import { getDatabase, ref, get, set, remove } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-database.js";
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyCIoSIq3Ci9wODl_OMk5XDMrAK7mVLQvzs",
-    authDomain: "madrasa-admission-system.firebaseapp.com",
-    databaseURL: "https://madrasa-admission-system-default-rtdb.firebaseio.com",
-    projectId: "madrasa-admission-system",
-    storageBucket: "madrasa-admission-system.firebasestorage.app",
-    messagingSenderId: "722552487890",
-    appId: "1:722552487890:web:7a8f6d8deb5da44c11520b"
-  };
-
-  try {
-    const app = initializeApp(firebaseConfig);
-    const db = getDatabase(app);
-    window.firebaseApp = app;
-    window.firebaseDb = db;
-    window.firebaseFns = { ref, get, set, remove };
-    // FIX: resolve the pending promise created earlier, instead of
-    // overwriting window.firebaseReady with a brand-new Promise here.
-    // Any code that already started awaiting window.firebaseReady
-    // (which happens as soon as the page loads) now gets unblocked
-    // correctly once Firebase is actually ready.
-    if (window.__resolveFirebaseReady) window.__resolveFirebaseReady(db);
-  } catch (error) {
-    console.error('Firebase initialization failed:', error);
-    if (window.__resolveFirebaseReady) window.__resolveFirebaseReady(null);
-  }
-</script>
 </body>
 </html>
